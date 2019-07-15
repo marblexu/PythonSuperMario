@@ -209,6 +209,7 @@ class Player(pg.sprite.Sprite):
 
 	def update_crouch_or_not(self, isDown=False):
 		if not self.big:
+			self.crouching = True if isDown else False
 			return
 		if not isDown and not self.crouching:
 			return

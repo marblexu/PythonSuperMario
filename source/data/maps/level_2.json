@@ -1,7 +1,7 @@
 {
 	"image_name":"level_2",
 	"maps":[
-		{"start_x":   0, "end_x": 8232, "player_x": 50, "player_y":  0},
+		{"start_x":   0, "end_x": 8232, "player_x":110, "player_y":  0},
 		{"start_x":8233, "end_x": 9860, "player_x":150, "player_y":451},
 		{"start_x":9862, "end_x":10662, "player_x": 50, "player_y":  0}
 	],

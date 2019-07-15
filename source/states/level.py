@@ -534,7 +534,6 @@ class Level(tools.State):
 		pipe = pg.sprite.spritecollideany(self.player, self.pipe_group)
 		if pipe and pipe.type == c.PIPE_TYPE_IN:
 			if self.player.crouching:
-				print('down to pipe')
 				self.player.state = c.DOWN_TO_PIPE
 		self.player.rect.y -= 1
 		

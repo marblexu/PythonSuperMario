@@ -50,7 +50,6 @@ class Powerup(stuff.Stuff):
 
 		sprite = pg.sprite.spritecollideany(self, sprite_group)
 		if sprite:
-			print('y_collisions:',self.rect.right)
 			self.y_vel = 0
 			self.rect.bottom = sprite.rect.top
 			self.state = c.SLIDE
@@ -76,7 +75,6 @@ class Mushroom(Powerup):
 		elif self.state == c.SLIDE:
 			self.x_vel = self.speed if self.direction == c.RIGHT else -1 * self.speed
 		elif self.state == c.FALL:
-			print('fall:',self.x_vel, self.y_vel)
 			if self.y_vel < self.max_y_vel:
 				self.y_vel += self.gravity
 		
