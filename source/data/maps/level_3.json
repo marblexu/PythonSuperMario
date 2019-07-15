@@ -1,0 +1,121 @@
+{
+	"image_name":"level_3",
+	"ground":[
+		{"x":   0, "y":538, "width": 686, "height": 60},
+		{"x": 774, "y":496, "width": 166, "height": 36},
+		{"x":1031, "y":368, "width": 340, "height": 36},
+		{"x":1074, "y":406, "width": 252, "height":194},
+		{"x":1118, "y":196, "width": 208, "height": 36},
+		{"x":1374, "y":496, "width": 126, "height": 36},
+		{"x":1504, "y":325, "width": 208, "height": 36},
+		{"x":1544, "y":360, "width": 126, "height":240},
+		{"x":1716, "y":153, "width": 296, "height": 36},
+		{"x":1760, "y":190, "width": 208, "height":410},
+		{"x":2146, "y":538, "width": 166, "height": 36},
+		{"x":2534, "y":538, "width": 208, "height": 36},
+		{"x":2574, "y":198, "width": 166, "height": 36},
+		{"x":2790, "y":538, "width": 208, "height": 36},
+		{"x":3002, "y":366, "width": 126, "height": 36},
+		{"x":3044, "y":406, "width":  40, "height":194},
+		{"x":3262, "y":238, "width": 252, "height": 36},
+		{"x":3304, "y":274, "width": 166, "height":326},
+		{"x":4204, "y":452, "width": 166, "height": 36},
+		{"x":4246, "y":488, "width":  84, "height":112},
+		{"x":4462, "y":282, "width": 338, "height": 36},
+		{"x":4502, "y":318, "width": 252, "height":282},
+		{"x":4847, "y":538, "width": 126, "height": 60},
+		{"x":4976, "y":368, "width": 166, "height": 36},
+		{"x":5018, "y":406, "width":  84, "height":194},
+		{"x":5232, "y":368, "width": 166, "height": 36},
+		{"x":5274, "y":406, "width":  84, "height":194},
+		{"x":5532, "y":538, "width":1508, "height": 60}
+	],
+	"step":[
+		{"x":5917, "y":366, "width": 80, "height":176},
+		{"x":6002, "y":280, "width": 80, "height":264},
+		{"x":6090, "y":194, "width": 80, "height":352},
+		{"x":6516, "y":495, "width": 40, "height": 44}
+	],
+	"slider":[
+		{"x":2400, "y":338, "num":3, "direction":1, "range_start": 338, "range_end": 560},
+		{"x":3590, "y":322, "num":3, "direction":0, "range_start":3590, "range_end":3750},
+		{"x":3750, "y":366, "num":3, "direction":0, "range_start":3750, "range_end":3910},
+		{"x":5440, "y":238, "num":3, "direction":0, "range_start":5440, "range_end":5600}
+	],
+	"coin":[
+		{"x":1166, "y":156},
+		{"x":1208, "y":156},
+		{"x":1250, "y":156},
+		{"x":1594, "y": 70},
+		{"x":1636, "y": 70},
+		{"x":2152, "y":240},
+		{"x":2194, "y":240},
+		{"x":2580, "y":156},
+		{"x":2622, "y":156},
+		{"x":2664, "y":156},
+		{"x":2706, "y":156},
+		{"x":3652, "y":198},
+		{"x":3694, "y":198},
+		{"x":3996, "y":156},
+		{"x":4038, "y":156},
+		{"x":4166, "y":156},
+		{"x":4208, "y":156},
+		{"x":4852, "y":496},
+		{"x":4894, "y":496},
+		{"x":4936, "y":496},
+		{"x":5154, "y":198},
+		{"x":5196, "y":198}
+	],
+	"box":[
+		{"x":2530, "y":408, "type":4}
+	],
+	"enemy":[
+		{"0":[
+			{"x":1284, "y":196, "direction":0, "type":1, "color":2, "range":1, "range_start":1114, "range_end":1324}
+		]},
+		{"1":[
+			{"x":1886, "y":152, "direction":0, "type":0, "color":0, "range":1, "range_start":1718, "range_end":2012},
+			{"x":1946, "y":152, "direction":0, "type":0, "color":0, "range":1, "range_start":1718, "range_end":2012}
+		]},
+		{"2":[
+			{"x":3174, "y":200, "direction":0, "type":2, "color":2, "range":1, "range_start":2764, "range_end":3212}
+		]},
+		{"3":[
+			{"x":3458, "y":238, "direction":0, "type":0, "color":0, "range":1, "range_start":3262, "range_end":3508}
+		]},
+		{"4":[
+			{"x":4740, "y":282, "direction":0, "type":1, "color":2, "range":1, "range_start":4460, "range_end":4798}
+		]},
+		{"5":[
+			{"x":5070, "y":238, "direction":0, "type":2, "color":2, "range":1, "range_start":4818, "range_end":5120}
+		]},
+		{"6":[
+			{"x":5836, "y":538, "direction":0, "type":1, "color":2, "range":1, "range_start":5530, "range_end":5908}
+		]}
+	],
+	"checkpoint":[
+		{"x": 690, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":0},
+		{"x":1292, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":1},
+		{"x":2300, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":2},
+		{"x":2870, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":3},
+		{"x":4154, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":4},
+		{"x":4466, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":5},
+		{"x":5246, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":6},
+		{"x":6536, "y":-15, "width": 6, "height":600, "type":1, "enemy_groupid":0},
+		{"x":6853, "y":0, "width":10, "height":600, "type":2, "enemy_groupid":0}
+	],
+	"flagpole":[
+		{"x":6497, "y":116, "type":0},
+		{"x":8505, "y": 97, "type":1},
+		{"x":8505, "y":137, "type":1},
+		{"x":8505, "y":177, "type":1},
+		{"x":8505, "y":217, "type":1},
+		{"x":8505, "y":257, "type":1},
+		{"x":8505, "y":297, "type":1},
+		{"x":8505, "y":337, "type":1},
+		{"x":8505, "y":377, "type":1},
+		{"x":8505, "y":417, "type":1},
+		{"x":8505, "y":450, "type":1},
+		{"x":8497, "y": 97, "type":2}
+	]
+}
