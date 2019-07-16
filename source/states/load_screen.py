@@ -44,3 +44,17 @@ class GameOver(LoadScreen):
 	
 	def set_info_state(self):
 		return c.GAME_OVER
+
+class TimeOut(LoadScreen):
+	def __init__(self):
+		LoadScreen.__init__(self)
+		self.time_list = [2400, 2600, 2635]
+
+	def set_next_state(self):
+		if self.persist[c.LIVES] == 0:
+			return c.GAME_OVER
+		else:
+			return c.LEVEL
+
+	def set_info_state(self):
+		return c.TIME_OUT

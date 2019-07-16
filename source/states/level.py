@@ -211,13 +211,8 @@ class Level(tools.State):
 			self.flagpole_group.update()
 			if self.current_time - self.castle_timer > 2000:
 				self.update_game_info()
-				self.player.kill()
 				self.done = True
-		elif (self.player.state == c.SMALL_TO_BIG or
-				self.player.state == c.BIG_TO_SMALL or
-				self.player.state == c.BIG_TO_FIRE or
-				self.player.state == c.DOWN_TO_PIPE or
-				self.player.state == c.UP_OUT_PIPE):
+		elif self.in_frozen_state():
 			self.player.update(keys, self.game_info, None)
 			self.check_checkpoints()
 			self.update_viewport()
@@ -504,6 +499,17 @@ class Level(tools.State):
 			enemy.start_death_jump(direction)
 		brick.rect.y += 5
 
+	def in_frozen_state(self):
+		if (self.player.state == c.SMALL_TO_BIG or
+		    self.player.state == c.BIG_TO_SMALL or
+		    self.player.state == c.BIG_TO_FIRE or
+		    self.player.state == c.DEATH_JUMP or
+		    self.player.state == c.DOWN_TO_PIPE or
+		    self.player.state == c.UP_OUT_PIPE):
+			return True
+		else:
+			return False
+
 	def check_is_falling(self, sprite):
 		sprite.rect.y += 1
 		check_group = pg.sprite.Group(self.ground_step_pipe_group,
@@ -514,18 +520,15 @@ class Level(tools.State):
 				sprite.state == c.END_OF_LEVEL_FALL):
 				sprite.state = c.END_OF_LEVEL_FALL
 			elif (sprite.state != c.JUMP and 
-				sprite.state != c.DEATH_JUMP and
 				sprite.state != c.FLAGPOLE and
-				sprite.state != c.SMALL_TO_BIG and
-				sprite.state != c.BIG_TO_SMALL and
-				sprite.state != c.BIG_TO_FIRE):
+				not self.in_frozen_state()):
 				sprite.state = c.FALL
 		sprite.rect.y -= 1
 	
 	def check_for_player_death(self):
-		if self.player.rect.y > c.SCREEN_HEIGHT:
-			self.player.dead = True
-			self.game_info[c.PLAYER_DEAD] = True
+		if (self.player.rect.y > c.SCREEN_HEIGHT or
+			self.overhead_info.time <= 0):
+			self.player.start_death_jump(self.game_info)
 			self.death_timer = self.current_time
 
 	def check_if_player_on_IN_pipe(self):
@@ -533,7 +536,9 @@ class Level(tools.State):
 		self.player.rect.y += 1
 		pipe = pg.sprite.spritecollideany(self.player, self.pipe_group)
 		if pipe and pipe.type == c.PIPE_TYPE_IN:
-			if self.player.crouching:
+			if (self.player.crouching and
+				self.player.rect.x < pipe.rect.centerx and
+				self.player.rect.right > pipe.rect.centerx):
 				self.player.state = c.DOWN_TO_PIPE
 		self.player.rect.y -= 1
 		
@@ -543,6 +548,8 @@ class Level(tools.State):
 
 		if self.persist[c.LIVES] == 0:
 			self.next = c.GAME_OVER
+		elif self.overhead_info.time == 0:
+			self.next = c.TIME_OUT
 		elif self.player.dead:
 			self.next = c.LOAD_SCREEN
 		else:

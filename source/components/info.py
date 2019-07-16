@@ -12,6 +12,7 @@ class Character(pg.sprite.Sprite):
 class Info():
 	def __init__(self, game_info, state):
 		self.coin_total = game_info[c.COIN_TOTAL]
+		self.time = 301
 		self.current_time = 0
 		self.total_lives = game_info[c.LIVES]
 		self.state = state
@@ -23,9 +24,9 @@ class Info():
 		self.create_player_image()
 		self.create_main_menu_labels()
 		self.create_load_screen_labels()
+		self.create_level_labels()
 		self.create_game_over_labels()
-		self.level_labels = [self.score_text, *self.label_list,
-					self.coin_count_text]
+		self.create_time_out_labels()
 		self.flashing_coin = coin.FlashCoin(280, 53)
 		
 	def create_font_image_dict(self):
@@ -114,7 +115,13 @@ class Info():
 		
 		self.load_screen_labels = [world_label, self.stage_label2, self.score_text, 
 				*self.label_list, self.life_total_label, self.coin_count_text]
-	
+
+	def create_level_labels(self):
+		self.clock_time_label = []
+		self.create_label(self.clock_time_label, str(self.time), 645, 55)
+		self.level_labels = [self.score_text, *self.label_list,
+					self.coin_count_text, self.clock_time_label]
+
 	def create_game_over_labels(self):
 		game_label = []
 		over_label = []
@@ -123,6 +130,12 @@ class Info():
 		self.create_label(over_label, 'OVER', 400, 300)
 		
 		self.game_over_label = [game_label, over_label, self.score_text, 
+						*self.label_list, self.coin_count_text]
+
+	def create_time_out_labels(self):
+		timeout_label = []
+		self.create_label(timeout_label, 'TIME OUT', 290, 310)
+		self.time_out_label = [timeout_label, self.score_text,
 						*self.label_list, self.coin_count_text]
 
 	def create_label(self, label_list, string, x, y):
@@ -138,8 +151,8 @@ class Info():
 				letter.rect.y += 7
 				letter.rect.x += 2
 	
-	def update(self, level_info, player=None):
-		self.player = player
+	def update(self, level_info, level=None):
+		self.level = level
 		self.handle_level_state(level_info)
 	
 	def handle_level_state(self, level_info):
@@ -149,8 +162,15 @@ class Info():
 		self.update_text(self.stage_label, level_info[c.LEVEL_NUM])
 		self.update_text(self.stage_label2, level_info[c.LEVEL_NUM])
 		self.flashing_coin.update(level_info[c.CURRENT_TIME])
+		if self.state == c.LEVEL:
+			if (level_info[c.CURRENT_TIME] - self.current_time) > 1000:
+				self.current_time = level_info[c.CURRENT_TIME]
+				self.time -= 1
+				self.update_text(self.clock_time_label, self.time, True)
 	
-	def update_text(self, text, score):
+	def update_text(self, text, score, reset=False):
+		if reset and len(text) > len(str(score)):
+			text.remove(text[0])
 		index = len(text) - 1
 		for digit in reversed(str(score)):
 			rect = text[index].rect
@@ -169,6 +189,8 @@ class Info():
 			self.draw_info(surface, self.level_labels)
 		elif self.state == c.GAME_OVER:
 			self.draw_info(surface, self.game_over_label)
+		elif self.state == c.TIME_OUT:
+			self.draw_info(surface, self.time_out_label)
 		surface.blit(self.flashing_coin.image, self.flashing_coin.rect)
 	
 	def draw_info(self, surface, label_list):

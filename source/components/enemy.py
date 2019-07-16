@@ -23,9 +23,9 @@ def create_enemy(item):
 		sprite = Koopa(item['x'], item['y'], dir, color,
 			in_range, range_start, range_end)
 	elif item['type'] == c.ENEMY_TYPE_FLY_KOOPA:
-		dir = c.LEFT if item['direction'] == 0 else c.VERTICAL
+		isVertical = False if item['is_vertical'] == 0 else True
 		sprite = FlyKoopa(item['x'], item['y'], dir, color,
-			in_range, range_start, range_end)
+			in_range, range_start, range_end, isVertical)
 	elif item['type'] == c.ENEMY_TYPE_PIRANHA:
 		sprite = Piranha(item['x'], item['y'], dir, color,
 			in_range, range_start, range_end)
@@ -36,7 +36,7 @@ class Enemy(pg.sprite.Sprite):
 		pg.sprite.Sprite.__init__(self)
 	
 	def setup_enemy(self, x, y, direction, name, sheet, frame_rect_list,
-						in_range, range_start, range_end):
+						in_range, range_start, range_end, isVertical=False):
 		self.frames = []
 		self.frame_index = 0
 		self.animate_timer = 0
@@ -53,6 +53,7 @@ class Enemy(pg.sprite.Sprite):
 		self.in_range = in_range
 		self.range_start = range_start
 		self.range_end = range_end
+		self.isVertical = isVertical
 		self.set_velocity()
 		self.death_timer = 0
 	
@@ -62,7 +63,7 @@ class Enemy(pg.sprite.Sprite):
 							c.BLACK, c.SIZE_MULTIPLIER))
 
 	def set_velocity(self):
-		if self.direction == c.VERTICAL:
+		if self.isVertical:
 			self.x_vel = 0
 			self.y_vel = ENEMY_SPEED
 		else:
@@ -141,7 +142,7 @@ class Enemy(pg.sprite.Sprite):
 		self.rect.x += self.x_vel
 		self.check_x_collisions(level)
 
-		if self.direction == c.VERTICAL:
+		if self.in_range and self.isVertical:
 			if self.rect.y < self.range_start:
 				self.rect.y = self.range_start
 				self.y_vel = ENEMY_SPEED
@@ -160,7 +161,7 @@ class Enemy(pg.sprite.Sprite):
 			self.kill()
 	
 	def check_x_collisions(self, level):
-		if self.in_range and self.direction != c.VERTICAL:
+		if self.in_range and not self.isVertical:
 			if self.rect.x < self.range_start:
 				self.rect.x = self.range_start
 				self.change_direction(c.RIGHT)
@@ -273,11 +274,11 @@ class Koopa(Enemy):
 
 class FlyKoopa(Enemy):
 	def __init__(self, x, y, direction, color, in_range, 
-				range_start, range_end, name=c.FLY_KOOPA):
+				range_start, range_end, isVertical, name=c.FLY_KOOPA):
 		Enemy.__init__(self)
 		frame_rect_list = self.get_frame_rect(color)
 		self.setup_enemy(x, y, direction, name, setup.GFX['smb_enemies_sheet'], 
-					frame_rect_list, in_range, range_start, range_end)
+					frame_rect_list, in_range, range_start, range_end, isVertical)
 		# dead jump image
 		self.frames.append(pg.transform.flip(self.frames[2], False, True))
 		# right walk images
@@ -303,7 +304,7 @@ class FlyKoopa(Enemy):
 		self.rect.x = x
 		self.rect.bottom = bottom
 		self.in_range = False
-		self.direction = c.LEFT
+		self.isVertical = False
 
 class Piranha(Enemy):
 	def __init__(self, x, y, direction, color, in_range, 
