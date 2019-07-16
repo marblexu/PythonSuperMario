@@ -23,6 +23,7 @@ def create_enemy(item):
 		sprite = Koopa(item['x'], item['y'], dir, color,
 			in_range, range_start, range_end)
 	elif item['type'] == c.ENEMY_TYPE_FLY_KOOPA:
+		dir = c.LEFT if item['direction'] == 0 else c.VERTICAL
 		sprite = FlyKoopa(item['x'], item['y'], dir, color,
 			in_range, range_start, range_end)
 	elif item['type'] == c.ENEMY_TYPE_PIRANHA:
@@ -61,8 +62,12 @@ class Enemy(pg.sprite.Sprite):
 							c.BLACK, c.SIZE_MULTIPLIER))
 
 	def set_velocity(self):
-		self.x_vel = ENEMY_SPEED *-1 if self.direction == c.LEFT else ENEMY_SPEED
-		self.y_vel = 0
+		if self.direction == c.VERTICAL:
+			self.x_vel = 0
+			self.y_vel = ENEMY_SPEED
+		else:
+			self.x_vel = ENEMY_SPEED *-1 if self.direction == c.LEFT else ENEMY_SPEED
+			self.y_vel = 0
 	
 	def update(self, game_info, level):
 		self.current_time = game_info[c.CURRENT_TIME]
@@ -136,6 +141,14 @@ class Enemy(pg.sprite.Sprite):
 		self.rect.x += self.x_vel
 		self.check_x_collisions(level)
 
+		if self.direction == c.VERTICAL:
+			if self.rect.y < self.range_start:
+				self.rect.y = self.range_start
+				self.y_vel = ENEMY_SPEED
+			elif self.rect.bottom > self.range_end:
+				self.rect.bottom = self.range_end
+				self.y_vel = -1 * ENEMY_SPEED
+
 		self.rect.y += self.y_vel
 		if (self.state != c.DEATH_JUMP and 
 			self.state != c.FLY):
@@ -147,7 +160,7 @@ class Enemy(pg.sprite.Sprite):
 			self.kill()
 	
 	def check_x_collisions(self, level):
-		if self.in_range:
+		if self.in_range and self.direction != c.VERTICAL:
 			if self.rect.x < self.range_start:
 				self.rect.x = self.range_start
 				self.change_direction(c.RIGHT)
@@ -290,6 +303,7 @@ class FlyKoopa(Enemy):
 		self.rect.x = x
 		self.rect.bottom = bottom
 		self.in_range = False
+		self.direction = c.LEFT
 
 class Piranha(Enemy):
 	def __init__(self, x, y, direction, color, in_range, 

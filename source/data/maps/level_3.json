@@ -37,7 +37,7 @@
 		{"x":6516, "y":495, "width": 40, "height": 44}
 	],
 	"slider":[
-		{"x":2400, "y":338, "num":3, "direction":1, "range_start": 338, "range_end": 560},
+		{"x":2400, "y":338, "num":3, "direction":1, "range_start": 238, "range_end": 560},
 		{"x":3590, "y":322, "num":3, "direction":0, "range_start":3590, "range_end":3750},
 		{"x":3750, "y":366, "num":3, "direction":0, "range_start":3750, "range_end":3910},
 		{"x":5440, "y":238, "num":3, "direction":0, "range_start":5440, "range_end":5600}
@@ -67,18 +67,18 @@
 		{"x":5196, "y":198}
 	],
 	"box":[
-		{"x":2530, "y":408, "type":4}
+		{"x":2530, "y":408, "type":3}
 	],
 	"enemy":[
 		{"0":[
 			{"x":1284, "y":196, "direction":0, "type":1, "color":2, "range":1, "range_start":1114, "range_end":1324}
 		]},
 		{"1":[
-			{"x":1886, "y":152, "direction":0, "type":0, "color":0, "range":1, "range_start":1718, "range_end":2012},
-			{"x":1946, "y":152, "direction":0, "type":0, "color":0, "range":1, "range_start":1718, "range_end":2012}
+			{"x":1886, "y":152, "direction":0, "type":0, "color":0},
+			{"x":1946, "y":152, "direction":0, "type":0, "color":0}
 		]},
 		{"2":[
-			{"x":3174, "y":200, "direction":0, "type":2, "color":2, "range":1, "range_start":2764, "range_end":3212}
+			{"x":3160, "y":220, "direction":1, "type":2, "color":2, "range":1, "range_start":200, "range_end":440}
 		]},
 		{"3":[
 			{"x":3458, "y":238, "direction":0, "type":0, "color":0, "range":1, "range_start":3262, "range_end":3508}
@@ -87,7 +87,7 @@
 			{"x":4740, "y":282, "direction":0, "type":1, "color":2, "range":1, "range_start":4460, "range_end":4798}
 		]},
 		{"5":[
-			{"x":5070, "y":238, "direction":0, "type":2, "color":2, "range":1, "range_start":4818, "range_end":5120}
+			{"x":4880, "y":260, "direction":1, "type":2, "color":2, "range":1, "range_start":230, "range_end":490}
 		]},
 		{"6":[
 			{"x":5836, "y":538, "direction":0, "type":1, "color":2, "range":1, "range_start":5530, "range_end":5908}
