@@ -170,16 +170,16 @@ class Level(tools.State):
 	
 	def setup_flagpole(self):
 		self.flagpole_group = pg.sprite.Group()
-		
-		for data in self.map_data[c.MAP_FLAGPOLE]:
-			if data['type'] == c.FLAGPOLE_TYPE_FLAG:
-				sprite = stuff.Flag(data['x'], data['y'])
-				self.flag = sprite
-			elif data['type'] == c.FLAGPOLE_TYPE_POLE:
-				sprite = stuff.Pole(data['x'], data['y'])
-			else:
-				sprite = stuff.PoleTop(data['x'], data['y'])
-			self.flagpole_group.add(sprite)
+		if c.MAP_FLAGPOLE in self.map_data:
+			for data in self.map_data[c.MAP_FLAGPOLE]:
+				if data['type'] == c.FLAGPOLE_TYPE_FLAG:
+					sprite = stuff.Flag(data['x'], data['y'])
+					self.flag = sprite
+				elif data['type'] == c.FLAGPOLE_TYPE_POLE:
+					sprite = stuff.Pole(data['x'], data['y'])
+				else:
+					sprite = stuff.PoleTop(data['x'], data['y'])
+				self.flagpole_group.add(sprite)
 		
 		
 	def setup_sprite_groups(self):
@@ -416,7 +416,7 @@ class Level(tools.State):
 				self.move_to_dying_group(self.enemy_group, enemy)
 				direction = c.RIGHT if self.player.facing_right else c.LEFT
 				enemy.start_death_jump(direction)
-			elif enemy.name == c.PIRANHA:
+			elif enemy.name == c.PIRANHA or enemy.name == c.FIRESTICK:
 				pass
 			elif self.player.y_vel > 0:
 				enemy.state = c.JUMPED_ON

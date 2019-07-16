@@ -87,6 +87,7 @@ ENEMY_TYPE_GOOMBA = 0
 ENEMY_TYPE_KOOPA = 1
 ENEMY_TYPE_FLY_KOOPA = 2
 ENEMY_TYPE_PIRANHA = 3
+ENEMY_TYPE_FIRESTICK = 4
 ENEMY_RANGE = 'range'
 MAP_CHECKPOINT = 'checkpoint'
 ENEMY_GROUPID = 'enemy_groupid'
@@ -162,6 +163,7 @@ GOOMBA = 'goomba'
 KOOPA = 'koopa'
 FLY_KOOPA = 'fly koopa'
 PIRANHA = 'piranha'
+FIRESTICK = 'firestick'
 
 #GOOMBA Stuff
 LEFT = 'left'

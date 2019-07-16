@@ -1,0 +1,75 @@
+{
+	"image_name":"level_4",
+	"maps":[
+		{"start_x":   0, "end_x": 6844, "player_x":110, "player_y": 275}
+	],
+	"ground":[
+		{"x":   0, "y":409, "width": 556, "height":191},
+		{"x":   0, "y":366, "width": 215, "height": 43},
+		{"x":   0, "y":323, "width": 172, "height": 43},
+		{"x":   0, "y":280, "width": 129, "height": 43},
+		{"x": 623, "y":409, "width": 470, "height":191},
+		{"x":1222, "y":409, "width": 330, "height":191},
+		{"x":1480, "y":409, "width":2959, "height":191},
+		{"x":1480, "y":366, "width":1587, "height": 43},
+		{"x":4436, "y":537, "width":1031, "height": 60},
+		{"x":4952, "y":406, "width": 172, "height":130},
+		{"x":5252, "y":406, "width": 214, "height":130},
+		{"x":6023, "y":363, "width": 130, "height":170},
+		{"x":6023, "y":537, "width": 821, "height": 60}
+	],
+	"step":[
+		{"x":   0, "y": 63, "width":1008, "height":127},
+		{"x": 966, "y":190, "width":  41, "height": 87},
+		{"x":1008, "y": 63, "width": 556, "height": 41},
+		{"x":1566, "y": 63, "width":1502, "height":170},
+		{"x":1566, "y":234, "width":  41, "height": 41},
+		{"x":2080, "y":234, "width":  41, "height": 43},
+		{"x":2552, "y":234, "width":  41, "height": 43},
+		{"x":2852, "y":234, "width":  41, "height": 43},
+		{"x":3066, "y": 63, "width":3778, "height": 40},
+		{"x":3238, "y":366, "width":  41, "height": 43},
+		{"x":3409, "y":104, "width":  41, "height": 86},
+		{"x":3581, "y":366, "width":  41, "height": 43},
+		{"x":3752, "y":104, "width":  41, "height": 86},
+		{"x":3924, "y":366, "width":  41, "height": 43},
+		{"x":3580, "y":366, "width":  41, "height": 43},
+		{"x":4138, "y":104, "width": 299, "height": 86},
+		{"x":5252, "y":104, "width": 414, "height": 86}
+	],
+	"box":[
+		{"x":1266, "y":236, "type":3}
+	],
+	"enemy":[
+		{"0":[
+			{"x":1277, "y":424, "direction":0, "type":4, "color":0, "num":6}
+		]},
+		{"1":[
+			{"x":2091, "y":249, "direction":0, "type":4, "color":0, "num":6}
+		]},
+		{"2":[
+			{"x":2562, "y":249, "direction":0, "type":4, "color":0, "num":6}
+		]},
+		{"3":[
+			{"x":2862, "y":249, "direction":0, "type":4, "color":0, "num":6}
+		]},
+		{"4":[
+			{"x":3250, "y":380, "direction":0, "type":4, "color":0, "num":6}
+		]},
+		{"5":[
+			{"x":3592, "y":380, "direction":0, "type":4, "color":0, "num":6}
+		]},
+		{"6":[
+			{"x":3762, "y":163, "direction":0, "type":4, "color":0, "num":6}
+		]}
+	],
+	"checkpoint":[
+		{"x": 577, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":0},
+		{"x":1392, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":1},
+		{"x":1863, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":2},
+		{"x":2162, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":3},
+		{"x":2550, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":4},
+		{"x":2892, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":5},
+		{"x":3062, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":6}
+	]
+}

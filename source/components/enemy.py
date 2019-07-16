@@ -1,4 +1,5 @@
 
+import math
 import pygame as pg
 from .. import setup, tools
 from .. import constants as c
@@ -29,6 +30,15 @@ def create_enemy(item):
 	elif item['type'] == c.ENEMY_TYPE_PIRANHA:
 		sprite = Piranha(item['x'], item['y'], dir, color,
 			in_range, range_start, range_end)
+	elif item['type'] == c.ENEMY_TYPE_FIRESTICK:
+		'''use a number of fireballs to stimulate a firestick'''
+		sprite = []
+		num = item['num']
+		center_x, center_y = item['x'], item['y']
+		for i in range(num):
+			radius = i * 21 # 8 * 2.69 = 21
+			sprite.append(FireStick(center_x, center_y, dir, color,
+				radius))
 	return sprite
 	
 class Enemy(pg.sprite.Sprite):
@@ -363,3 +373,48 @@ class Piranha(Enemy):
 
 	def start_death_jump(self, direction):
 		self.kill()
+
+class FireStick(pg.sprite.Sprite):
+	def __init__(self, center_x, center_y, direction, color, radius, name=c.FIRESTICK):
+		'''the firestick will rotate around the center of a circle'''
+		pg.sprite.Sprite.__init__(self)
+
+		self.frames = []
+		self.frame_index = 0
+		self.animate_timer = 0
+		self.name = name
+		rect_list = [(96, 144, 8, 8), (104, 144, 8, 8),
+					(96, 152, 8, 8), (104, 152, 8, 8)]
+		self.load_frames(setup.GFX['item_objects'], rect_list)
+		self.animate_timer = 0
+		self.image = self.frames[self.frame_index]
+		self.rect = self.image.get_rect()
+		self.rect.x = center_x - radius
+		self.rect.y = center_y
+		self.center_x = center_x
+		self.center_y = center_y
+		self.radius = radius
+		self.angle = 0
+		print('FireStick:', self.rect.x, self.rect.y)
+
+	def load_frames(self, sheet, frame_rect_list):
+		for frame_rect in frame_rect_list:
+			self.frames.append(tools.get_image(sheet, *frame_rect, 
+							c.BLACK, c.BRICK_SIZE_MULTIPLIER))
+
+	def update(self, game_info, level):
+		self.current_time = game_info[c.CURRENT_TIME]
+		if (self.current_time - self.animate_timer) > 200:
+			if self.frame_index < 3:
+				self.frame_index += 1
+			else:
+				self.frame_index = 0
+			self.animate_timer = self.current_time
+		#self.image = self.frames[self.frame_index]
+
+		self.angle += 1
+		if self.angle == 360:
+			self.angle = 0
+		radian = math.radians(self.angle)
+		self.rect.x = self.center_x + math.sin(radian) * self.radius
+		self.rect.y = self.center_y + math.cos(radian) * self.radius
