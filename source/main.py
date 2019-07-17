@@ -4,11 +4,11 @@ from . import constants as c
 from .states import main_menu, load_screen, level
 
 def main():
-	run_it = tools.Control(c.SCREEN_SIZE)
-	state_dict = {c.MAIN_MENU: main_menu.Menu(),
-				  c.LOAD_SCREEN: load_screen.LoadScreen(),
-				  c.LEVEL: level.Level(),
-				  c.GAME_OVER: load_screen.GameOver(),
-				  c.TIME_OUT: load_screen.TimeOut()}
-	run_it.setup_states(state_dict, c.MAIN_MENU)
-	run_it.main()
+    run_it = tools.Control(c.SCREEN_SIZE)
+    state_dict = {c.MAIN_MENU: main_menu.Menu(),
+                  c.LOAD_SCREEN: load_screen.LoadScreen(),
+                  c.LEVEL: level.Level(),
+                  c.GAME_OVER: load_screen.GameOver(),
+                  c.TIME_OUT: load_screen.TimeOut()}
+    run_it.setup_states(state_dict, c.MAIN_MENU)
+    run_it.main()

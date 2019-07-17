@@ -1,53 +1,53 @@
 {
-	"image_name":"mario_bros",
-	"image_frames":{
-		"right_small_normal":[
-			{"x":178, "y": 32, "width":12, "height":16},
-			{"x": 80, "y": 32, "width":15, "height":16},
-			{"x": 96, "y": 32, "width":16, "height":16},
-			{"x":112, "y": 32, "width":16, "height":16},
-			{"x":144, "y": 32, "width":16, "height":16},
-			{"x":130, "y": 32, "width":14, "height":16},
-			{"x":160, "y": 32, "width":15, "height":16},
-			{"x":320, "y":  8, "width":16, "height":24},
-			{"x":241, "y": 33, "width":16, "height":16},
-			{"x":194, "y": 32, "width":12, "height":16},
-			{"x":210, "y": 33, "width":12, "height":16}
-		],
-		"right_big_normal":[
-			{"x":176, "y":  0, "width":16, "height":32},
-			{"x": 81, "y":  0, "width":16, "height":32},
-			{"x": 97, "y":  0, "width":15, "height":32},
-			{"x":113, "y":  0, "width":15, "height":32},
-			{"x":144, "y":  0, "width":16, "height":32},
-			{"x":128, "y":  0, "width":16, "height":32},
-			{"x":336, "y":  0, "width":16, "height":32},
-			{"x":160, "y": 10, "width":16, "height":22},
-			{"x":272, "y":  2, "width":16, "height":29},
-			{"x":193, "y":  2, "width":16, "height":29},
-			{"x":209, "y":  2, "width":16, "height":29}
-		],
-		"right_big_fire":[
-			{"x":176, "y": 48, "width":16, "height":32},
-			{"x": 81, "y": 48, "width":16, "height":32},
-			{"x": 97, "y": 48, "width":15, "height":32},
-			{"x":113, "y": 48, "width":15, "height":32},
-			{"x":144, "y": 48, "width":16, "height":32},
-			{"x":128, "y": 48, "width":16, "height":32},
-			{"x":336, "y": 48, "width":16, "height":32},
-			{"x":160, "y": 58, "width":16, "height":22},
-			{"x":272, "y": 50, "width":16, "height":29},
-			{"x":193, "y": 50, "width":16, "height":29},
-			{"x":209, "y": 50, "width":16, "height":29}
-		]
-	},
-	"speed":{
-		"max_walk_speed":6,
-		"max_run_speed":12,
-		"max_y_velocity":11,
-		"walk_accel":0.15,
-		"run_accel":0.3,
-		"jump_velocity":-10.5
-	}
-	
+    "image_name":"mario_bros",
+    "image_frames":{
+        "right_small_normal":[
+            {"x":178, "y": 32, "width":12, "height":16},
+            {"x": 80, "y": 32, "width":15, "height":16},
+            {"x": 96, "y": 32, "width":16, "height":16},
+            {"x":112, "y": 32, "width":16, "height":16},
+            {"x":144, "y": 32, "width":16, "height":16},
+            {"x":130, "y": 32, "width":14, "height":16},
+            {"x":160, "y": 32, "width":15, "height":16},
+            {"x":320, "y":  8, "width":16, "height":24},
+            {"x":241, "y": 33, "width":16, "height":16},
+            {"x":194, "y": 32, "width":12, "height":16},
+            {"x":210, "y": 33, "width":12, "height":16}
+        ],
+        "right_big_normal":[
+            {"x":176, "y":  0, "width":16, "height":32},
+            {"x": 81, "y":  0, "width":16, "height":32},
+            {"x": 97, "y":  0, "width":15, "height":32},
+            {"x":113, "y":  0, "width":15, "height":32},
+            {"x":144, "y":  0, "width":16, "height":32},
+            {"x":128, "y":  0, "width":16, "height":32},
+            {"x":336, "y":  0, "width":16, "height":32},
+            {"x":160, "y": 10, "width":16, "height":22},
+            {"x":272, "y":  2, "width":16, "height":29},
+            {"x":193, "y":  2, "width":16, "height":29},
+            {"x":209, "y":  2, "width":16, "height":29}
+        ],
+        "right_big_fire":[
+            {"x":176, "y": 48, "width":16, "height":32},
+            {"x": 81, "y": 48, "width":16, "height":32},
+            {"x": 97, "y": 48, "width":15, "height":32},
+            {"x":113, "y": 48, "width":15, "height":32},
+            {"x":144, "y": 48, "width":16, "height":32},
+            {"x":128, "y": 48, "width":16, "height":32},
+            {"x":336, "y": 48, "width":16, "height":32},
+            {"x":160, "y": 58, "width":16, "height":22},
+            {"x":272, "y": 50, "width":16, "height":29},
+            {"x":193, "y": 50, "width":16, "height":29},
+            {"x":209, "y": 50, "width":16, "height":29}
+        ]
+    },
+    "speed":{
+        "max_walk_speed":6,
+        "max_run_speed":12,
+        "max_y_velocity":11,
+        "walk_accel":0.15,
+        "run_accel":0.3,
+        "jump_velocity":-10.5
+    }
+    
 }
