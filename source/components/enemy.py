@@ -226,7 +226,7 @@ class Goomba(Enemy):
                 range_start, range_end, name=c.GOOMBA):
         Enemy.__init__(self)
         frame_rect_list = self.get_frame_rect(color)
-        self.setup_enemy(x, y, direction, name, setup.GFX['smb_enemies_sheet'], 
+        self.setup_enemy(x, y, direction, name, setup.GFX[c.ENEMY_SHEET],
                     frame_rect_list, in_range, range_start, range_end)
         # dead jump image
         self.frames.append(pg.transform.flip(self.frames[2], False, True))
@@ -256,7 +256,7 @@ class Koopa(Enemy):
                 range_start, range_end, name=c.KOOPA):
         Enemy.__init__(self)
         frame_rect_list = self.get_frame_rect(color)
-        self.setup_enemy(x, y, direction, name, setup.GFX['smb_enemies_sheet'], 
+        self.setup_enemy(x, y, direction, name, setup.GFX[c.ENEMY_SHEET],
                     frame_rect_list, in_range, range_start, range_end)
         # dead jump image
         self.frames.append(pg.transform.flip(self.frames[2], False, True))
@@ -291,7 +291,7 @@ class FlyKoopa(Enemy):
                 range_start, range_end, isVertical, name=c.FLY_KOOPA):
         Enemy.__init__(self)
         frame_rect_list = self.get_frame_rect(color)
-        self.setup_enemy(x, y, direction, name, setup.GFX['smb_enemies_sheet'], 
+        self.setup_enemy(x, y, direction, name, setup.GFX[c.ENEMY_SHEET], 
                     frame_rect_list, in_range, range_start, range_end, isVertical)
         # dead jump image
         self.frames.append(pg.transform.flip(self.frames[2], False, True))
@@ -326,7 +326,7 @@ class FireKoopa(Enemy):
         Enemy.__init__(self)
         frame_rect_list = [(2, 210, 32, 32), (42, 210, 32, 32),
                             (82, 210, 32, 32), (122, 210, 32, 32)]
-        self.setup_enemy(x, y, direction, name, setup.GFX['smb_enemies_sheet'], 
+        self.setup_enemy(x, y, direction, name, setup.GFX[c.ENEMY_SHEET], 
                     frame_rect_list, in_range, range_start, range_end)
         # right walk images
         self.frames.append(pg.transform.flip(self.frames[0], True, False))
@@ -382,7 +382,7 @@ class Fire(Enemy):
         Enemy.__init__(self)
         frame_rect_list = [(101, 253, 23, 8), (131, 253, 23, 8)]
         in_range, range_start, range_end = False, 0, 0
-        self.setup_enemy(x, y, direction, name, setup.GFX['smb_enemies_sheet'], 
+        self.setup_enemy(x, y, direction, name, setup.GFX[c.ENEMY_SHEET], 
                     frame_rect_list, in_range, range_start, range_end)
         # right images
         self.frames.append(pg.transform.flip(self.frames[0], True, False))
@@ -405,7 +405,7 @@ class Piranha(Enemy):
                 range_start, range_end, name=c.PIRANHA):
         Enemy.__init__(self)
         frame_rect_list = self.get_frame_rect(color)
-        self.setup_enemy(x, y, direction, name, setup.GFX['smb_enemies_sheet'], 
+        self.setup_enemy(x, y, direction, name, setup.GFX[c.ENEMY_SHEET], 
                     frame_rect_list, in_range, range_start, range_end)
         self.state = c.REVEAL
         self.y_vel = 1
@@ -469,7 +469,7 @@ class FireStick(pg.sprite.Sprite):
         self.name = name
         rect_list = [(96, 144, 8, 8), (104, 144, 8, 8),
                     (96, 152, 8, 8), (104, 152, 8, 8)]
-        self.load_frames(setup.GFX['item_objects'], rect_list)
+        self.load_frames(setup.GFX[c.ITEM_SHEET], rect_list)
         self.animate_timer = 0
         self.image = self.frames[self.frame_index]
         self.rect = self.image.get_rect()

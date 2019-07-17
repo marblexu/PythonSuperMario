@@ -22,7 +22,7 @@ class Coin(pg.sprite.Sprite):
         self.score_group = score_group
         
     def load_frames(self):
-        sheet = setup.GFX['item_objects']
+        sheet = setup.GFX[c.ITEM_SHEET]
         frame_rect_list = [(52, 113, 8, 14), (4, 113, 8, 14), 
                         (20, 113, 8, 14), (36, 113, 8, 14)]
         for frame_rect in frame_rect_list:
@@ -61,7 +61,7 @@ class FlashCoin(pg.sprite.Sprite):
         self.animation_timer = 0
         
     def load_frames(self):
-        sheet = setup.GFX['item_objects']
+        sheet = setup.GFX[c.ITEM_SHEET]
         frame_rect_list = [(1, 160, 5, 8), (9, 160, 5, 8),
                         (17, 160, 5, 8), (9, 160, 5, 8)]
         for frame_rect in frame_rect_list:
@@ -93,7 +93,7 @@ class StaticCoin(pg.sprite.Sprite):
         self.animation_timer = 0
 
     def load_frames(self):
-        sheet = setup.GFX['item_objects']
+        sheet = setup.GFX[c.ITEM_SHEET]
         frame_rect_list = [(3, 98, 9, 13), (19, 98, 9, 13),
                         (35, 98, 9, 13), (51, 98, 9, 13)]
         for frame_rect in frame_rect_list:

@@ -51,12 +51,12 @@ class Pole(Stuff):
 
 class PoleTop(Stuff):
     def __init__(self, x, y):
-        Stuff.__init__(self, x, y, setup.GFX['tile_set'], 
+        Stuff.__init__(self, x, y, setup.GFX['tile_set'],
                 [(228, 120, 8, 8)], c.BRICK_SIZE_MULTIPLIER)
 
 class Flag(Stuff):
     def __init__(self, x, y):
-        Stuff.__init__(self, x, y, setup.GFX['item_objects'], 
+        Stuff.__init__(self, x, y, setup.GFX[c.ITEM_SHEET],
                 [(128, 32, 16, 16)], c.SIZE_MULTIPLIER)
         self.state = c.TOP_OF_POLE
         self.y_vel = 5
@@ -69,7 +69,7 @@ class Flag(Stuff):
 
 class CastleFlag(Stuff):
     def __init__(self, x, y):
-        Stuff.__init__(self, x, y, setup.GFX['item_objects'], 
+        Stuff.__init__(self, x, y, setup.GFX[c.ITEM_SHEET],
                 [(129, 2, 14, 14)], c.SIZE_MULTIPLIER)
         self.y_vel = -2
         self.target_height = y
@@ -103,8 +103,8 @@ class Score():
                             (20, 168, 4, 8), (0, 0, 0, 0)]
         digit_string = '0123456789'
         for digit, image_rect in zip(digit_string, digit_rect_list):
-            self.image_dict[digit] = tools.get_image(setup.GFX['item_objects'], 
-                                            *image_rect, c.BLACK, c.BRICK_SIZE_MULTIPLIER)
+            self.image_dict[digit] = tools.get_image(setup.GFX[c.ITEM_SHEET],
+                                    *image_rect, c.BLACK, c.BRICK_SIZE_MULTIPLIER)
     
     def create_score_digit(self):
         self.digit_group = pg.sprite.Group()
@@ -170,7 +170,7 @@ class Pipe(Stuff):
 
 class Slider(Stuff):
     def __init__(self, x, y, num, direction, range_start, range_end, vel, name=c.MAP_SLIDER):
-        Stuff.__init__(self, x, y, setup.GFX['item_objects'], 
+        Stuff.__init__(self, x, y, setup.GFX[c.ITEM_SHEET],
                 [(64, 128, 15, 8)], 2.8)
         self.name = name
         self.create_image(x, y, num)

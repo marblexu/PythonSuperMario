@@ -61,7 +61,7 @@ class Powerup(stuff.Stuff):
 
 class Mushroom(Powerup):
     def __init__(self, x, y):
-        Powerup.__init__(self, x, y, setup.GFX['item_objects'],
+        Powerup.__init__(self, x, y, setup.GFX[c.ITEM_SHEET],
                 [(0, 0, 16, 16)], c.SIZE_MULTIPLIER)
         self.type = c.TYPE_MUSHROOM
         self.speed = 2
@@ -85,7 +85,7 @@ class Mushroom(Powerup):
 
 class LifeMushroom(Mushroom):
     def __init__(self, x, y):
-        Powerup.__init__(self, x, y, setup.GFX['item_objects'],
+        Powerup.__init__(self, x, y, setup.GFX[c.ITEM_SHEET],
                 [(16, 0, 16, 16)], c.SIZE_MULTIPLIER)
         self.type = c.TYPE_LIFEMUSHROOM
         self.speed = 2
@@ -94,7 +94,7 @@ class FireFlower(Powerup):
     def __init__(self, x, y):
         frame_rect_list = [(0, 32, 16, 16), (16, 32, 16, 16),
                         (32, 32, 16, 16), (48, 32, 16, 16)]
-        Powerup.__init__(self, x, y, setup.GFX['item_objects'],
+        Powerup.__init__(self, x, y, setup.GFX[c.ITEM_SHEET],
                     frame_rect_list, c.SIZE_MULTIPLIER)
         self.type = c.TYPE_FIREFLOWER
 
@@ -120,7 +120,7 @@ class Star(Powerup):
     def __init__(self, x, y):
         frame_rect_list = [(1, 48, 15, 16), (17, 48, 15, 16),
                         (33, 48, 15, 16), (49, 48, 15, 16)]
-        Powerup.__init__(self, x, y, setup.GFX['item_objects'],
+        Powerup.__init__(self, x, y, setup.GFX[c.ITEM_SHEET],
                     frame_rect_list, c.SIZE_MULTIPLIER)
         self.type = c.TYPE_STAR
         self.gravity = .4
@@ -168,7 +168,7 @@ class FireBall(Powerup):
                         (96, 152, 8, 8), (104, 152, 8, 8),
                         (112, 144, 16, 16), (112, 160, 16, 16),
                         (112, 176, 16, 16)]
-        Powerup.__init__(self, x, y, setup.GFX['item_objects'],
+        Powerup.__init__(self, x, y, setup.GFX[c.ITEM_SHEET],
                     frame_rect_list, c.SIZE_MULTIPLIER)
         self.type = c.TYPE_FIREBALL
         self.y_vel = 10

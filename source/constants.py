@@ -185,3 +185,7 @@ BOTTOM_OF_POLE = 'bottom of pole'
 FLYING = 'flying'
 BOUNCING = 'bouncing'
 EXPLODING = 'exploding'
+
+#IMAGE SHEET
+ENEMY_SHEET = 'smb_enemies_sheet'
+ITEM_SHEET = 'item_objects'
