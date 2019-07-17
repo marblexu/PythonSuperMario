@@ -74,8 +74,8 @@
     ],
     "checkpoint":[
         {"x": 577, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":0},
-        {"x":1392, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":1},
-        {"x":1863, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":2},
+        {"x":1050, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":1},
+        {"x":1700, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":2},
         {"x":2162, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":3},
         {"x":2550, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":4},
         {"x":2892, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":5},

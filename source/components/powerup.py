@@ -35,7 +35,6 @@ class Powerup(stuff.Stuff):
                             level.brick_group, level.box_group)
         sprite = pg.sprite.spritecollideany(self, sprite_group)
         if sprite:
-            print('x_collisions:',self.rect.right)
             if self.direction == c.RIGHT:
                 self.rect.right = sprite.rect.left-1
                 self.direction = c.LEFT

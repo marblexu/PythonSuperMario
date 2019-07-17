@@ -17,8 +17,6 @@ class Level(tools.State):
         self.game_info = persist
         self.persist = self.game_info
         self.game_info[c.CURRENT_TIME] = current_time
-        self.game_info[c.PLAYER_DEAD] = False
-
         self.death_timer = 0
         self.castle_timer = 0
         
@@ -57,7 +55,6 @@ class Level(tools.State):
 
         self.level = pg.Surface((self.bg_rect.w, self.bg_rect.h)).convert()
         self.viewport = setup.SCREEN.get_rect(bottom=self.bg_rect.bottom)
-        self.viewport.x = self.game_info[c.CAMERA_START_X]
 
     def setup_maps(self):
         self.map_list = []

@@ -54,13 +54,10 @@ SCORE = 'score'
 TOP_SCORE = 'top score'
 LIVES = 'lives'
 CURRENT_TIME = 'current time'
-LEVEL_STATE = 'level state'
 LEVEL_NUM = 'level num'
-CAMERA_START_X = 'camera start x'
 PLAYER_NAME = 'player name'
 PLAYER_MARIO = 'mario'
 PLAYER_LUIGI = 'luigi'
-PLAYER_DEAD = 'player dead'
 
 #MAP COMPONENTS
 MAP_IMAGE = 'image_name'

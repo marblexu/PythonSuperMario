@@ -537,7 +537,6 @@ class Player(pg.sprite.Sprite):
 
     def start_death_jump(self, game_info):
         self.dead = True
-        game_info[c.PLAYER_DEAD] = True
         self.y_vel = -11
         self.gravity = .5
         self.frame_index = 6
