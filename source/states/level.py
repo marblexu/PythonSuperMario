@@ -322,8 +322,9 @@ class Level(tools.State):
         elif powerup:
             if powerup.type == c.TYPE_MUSHROOM:
                 self.update_score(1000, powerup, 0)
-                self.player.y_vel = -1
-                self.player.state = c.SMALL_TO_BIG
+                if not self.player.big:
+                    self.player.y_vel = -1
+                    self.player.state = c.SMALL_TO_BIG
             elif powerup.type == c.TYPE_FIREFLOWER:
                 self.update_score(1000, powerup, 0)
                 if not self.player.big:

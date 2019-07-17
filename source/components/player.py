@@ -30,12 +30,13 @@ class Player(pg.sprite.Sprite):
 
     def restart(self):
         '''restart after player is dead or go to next level'''
-        self.dead = False
-        self.big = False
-        self.fire = False
-        self.set_player_image(self.small_normal_frames, 0)
-        self.right_frames = self.small_normal_frames[0]
-        self.left_frames = self.small_normal_frames[1]
+        if self.dead:
+            self.dead = False
+            self.big = False
+            self.fire = False
+            self.set_player_image(self.small_normal_frames, 0)
+            self.right_frames = self.small_normal_frames[0]
+            self.left_frames = self.small_normal_frames[1]
         self.state = c.STAND
 
     def load_data(self):
