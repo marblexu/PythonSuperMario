@@ -213,7 +213,7 @@ class Enemy(pg.sprite.Sprite):
 		sprite_group = pg.sprite.Group(level.ground_step_pipe_group, 
 							level.brick_group, level.box_group)
 		sprite = pg.sprite.spritecollideany(self, sprite_group)
-		if sprite:
+		if sprite and sprite.name != c.MAP_SLIDER:
 			if self.rect.top <= sprite.rect.top:
 				self.rect.bottom = sprite.rect.y
 				self.y_vel = 0
@@ -333,8 +333,10 @@ class FireKoopa(Enemy):
 		self.frames.append(pg.transform.flip(self.frames[2], True, False))
 		self.frames.append(pg.transform.flip(self.frames[3], True, False))
 		self.x_vel = 0
+		self.gravity = 0.3
 		self.level = level
 		self.fire_timer = 0
+		self.jump_timer = 0
 
 	def load_frames(self, sheet, frame_rect_list):
 		for frame_rect in frame_rect_list:
@@ -353,16 +355,26 @@ class FireKoopa(Enemy):
 					self.frame_index = 0
 			self.animate_timer = self.current_time
 
-		if self.fire_timer == 0:
-			self.fire_timer = self.current_time
-			self.shootFire()
-		elif (self.current_time - self.fire_timer) > 3000:
-			self.fire_timer = self.current_time
-			self.shootFire()
+		self.shoot_fire()
+		if self.should_jump():
+			self.y_vel = -7
 
-	def shootFire(self):
-		self.level.enemy_group.add(Fire(self.rect.x, self.rect.bottom-20, self.direction))
-		self.level.player_and_enemy_group.add(self.level.enemy_group)
+	def falling(self):
+		if self.y_vel < 7:
+			self.y_vel += self.gravity
+		self.shoot_fire()
+
+	def should_jump(self):
+		if (self.rect.x - self.level.player.rect.x) < 400:
+			if (self.current_time - self.jump_timer) > 2500:
+				self.jump_timer = self.current_time
+				return True
+		return False
+
+	def shoot_fire(self):
+		if (self.current_time - self.fire_timer) > 3000:
+			self.fire_timer = self.current_time
+			self.level.enemy_group.add(Fire(self.rect.x, self.rect.bottom-20, self.direction))
 
 class Fire(Enemy):
 	def __init__(self, x, y, direction, name=c.FIRE):
@@ -383,6 +395,9 @@ class Fire(Enemy):
 		sprite = pg.sprite.spritecollideany(self, sprite_group)
 		if sprite:
 			self.kill()
+
+	def start_death_jump(self, direction):
+		self.kill()
 
 class Piranha(Enemy):
 	def __init__(self, x, y, direction, color, in_range, 

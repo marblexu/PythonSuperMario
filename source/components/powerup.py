@@ -229,9 +229,10 @@ class FireBall(Powerup):
 					self.x_vel = -15
 				self.state = c.BOUNCING
 		elif enemy:
-			level.update_score(100, enemy, 0)
-			level.move_to_dying_group(level.enemy_group, enemy)
-			enemy.start_death_jump(self.direction)
+			if (enemy.name != c.FIRESTICK) :
+				level.update_score(100, enemy, 0)
+				level.move_to_dying_group(level.enemy_group, enemy)
+				enemy.start_death_jump(self.direction)
 			self.change_to_explode()
 	
 	def change_to_explode(self):

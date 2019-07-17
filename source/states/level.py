@@ -189,8 +189,7 @@ class Level(tools.State):
 		
 		self.ground_step_pipe_group = pg.sprite.Group(self.ground_group,
 						self.pipe_group, self.step_group, self.slider_group)
-		self.player_and_enemy_group = pg.sprite.Group(self.player, 
-										self.enemy_group)
+		self.player_group = pg.sprite.Group(self.player)
 		
 	def update(self, surface, keys, current_time):
 		self.game_info[c.CURRENT_TIME] = self.current_time = current_time
@@ -246,10 +245,7 @@ class Level(tools.State):
 		if checkpoint:
 			if checkpoint.type == c.CHECKPOINT_TYPE_ENEMY:
 				group = self.enemy_group_list[checkpoint.enemy_groupid]
-				#for index, enemy in enumerate(group):
-				#	enemy.rect.x = self.viewport.right + (index * 60)
 				self.enemy_group.add(group)
-				self.player_and_enemy_group.add(self.enemy_group)
 			elif checkpoint.type == c.CHECKPOINT_TYPE_FLAG:
 				self.player.state = c.FLAGPOLE
 				if self.player.rect.bottom < self.flag.rect.y:
@@ -593,7 +589,8 @@ class Level(tools.State):
 		self.brickpiece_group.draw(self.level)
 		self.flagpole_group.draw(self.level)
 		self.shell_group.draw(self.level)
-		self.player_and_enemy_group.draw(self.level)
+		self.enemy_group.draw(self.level)
+		self.player_group.draw(self.level)
 		self.static_coin_group.draw(self.level)
 		self.slider_group.draw(self.level)
 		self.pipe_group.draw(self.level)
