@@ -1,3 +1,5 @@
+__author__ = 'marble_xu'
+
 import os
 import json
 import pygame as pg
@@ -140,8 +142,8 @@ class Level(tools.State):
         self.player.rect.x = self.viewport.x + self.player_x
         self.player.rect.bottom = self.player_y
         if c.DEBUG:
-            self.player.rect.x = self.viewport.x + c.PLAYER_START_X
-            self.player.rect.bottom = c.PLAYER_START_y    
+            self.player.rect.x = self.viewport.x + c.DEBUG_START_X
+            self.player.rect.bottom = c.DEBUG_START_y
         self.viewport.x = self.player.rect.x - 110
 
     def setup_enemies(self):

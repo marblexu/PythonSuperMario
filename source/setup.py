@@ -1,3 +1,5 @@
+__author__ = 'marble_xu'
+
 import os
 import pygame as pg
 from . import constants as c
