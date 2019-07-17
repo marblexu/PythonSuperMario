@@ -28,21 +28,20 @@ class Player(pg.sprite.Sprite):
 
     def restart(self):
         '''restart after player is dead or go to next level'''
-        if self.dead:
-            self.dead = False
-            self.big = False
-            self.fire = False
-            self.set_player_image(self.small_normal_frames, 0)
-            self.right_frames = self.small_normal_frames[0]
-            self.left_frames = self.small_normal_frames[1]
+        self.dead = False
+        self.big = False
+        self.fire = False
+        self.set_player_image(self.small_normal_frames, 0)
+        self.right_frames = self.small_normal_frames[0]
+        self.left_frames = self.small_normal_frames[1]
         self.state = c.STAND
-            
+
     def load_data(self):
         player_file = str(self.player_name) + '.json'
         file_path = os.path.join('source', 'data', 'player', player_file)
         f = open(file_path)
         self.player_data = json.load(f)
-    
+
     def setup_timer(self):
         self.walking_timer = 0
         self.death_timer = 0
@@ -78,14 +77,14 @@ class Player(pg.sprite.Sprite):
         self.gravity = c.GRAVITY
         self.max_x_vel = self.max_walk_vel
         self.x_accel = self.walk_accel
-        
+
     def load_images(self):
         sheet = setup.GFX['mario_bros']
         frames_list = self.player_data[c.PLAYER_FRAMES]
-        
+
         self.right_frames = []
         self.left_frames = []
-        
+
         self.right_small_normal_frames = []
         self.left_small_normal_frames = []
         self.right_big_normal_frames = []
@@ -126,7 +125,7 @@ class Player(pg.sprite.Sprite):
         
         self.right_frames = self.small_normal_frames[0]
         self.left_frames = self.small_normal_frames[1]
-        
+
     def update(self, keys, game_info, fire_group):
         self.current_time = game_info[c.CURRENT_TIME]
         self.handle_state(keys, fire_group)
@@ -287,7 +286,7 @@ class Player(pg.sprite.Sprite):
                 else:
                     self.x_vel = 0
                     self.state = c.STAND
-    
+
     def jumping(self, keys, fire_group):
         """ y_vel value: positive is down, negative is up """
         self.check_to_allow_fireball(keys)
@@ -348,7 +347,7 @@ class Player(pg.sprite.Sprite):
             return new_vel * -1
         else:
             return new_vel
-            
+
     def calculate_animation_speed(self):
         if self.x_vel == 0:
             animation_speed = 130
@@ -357,7 +356,7 @@ class Player(pg.sprite.Sprite):
         else:
             animation_speed = 130 - (self.x_vel * 13 * -1)
         return animation_speed
-    
+
     def shoot_fireball(self, powerup_group):
         if (self.current_time - self.last_fireball_time) > 500:
             self.allow_fireball = False
@@ -398,7 +397,7 @@ class Player(pg.sprite.Sprite):
             else:
                 self.frame_index = 1
             self.walking_timer = self.current_time
-    
+
     def changing_to_big(self):
         timer_list = [135, 200, 365, 430, 495, 560, 625, 690, 755, 820, 885]
         # size value 0:small, 1:middle, 2:big
@@ -421,7 +420,7 @@ class Player(pg.sprite.Sprite):
                 frame, frame_index = frames[size_list[self.change_index]]
                 self.set_player_image(frame, frame_index)
             self.change_index += 1
-    
+
     def changing_to_small(self):
         timer_list = [265, 330, 395, 460, 525, 590, 655, 720, 785, 850, 915]
         # size value 0:big, 1:middle, 2:small
@@ -447,7 +446,7 @@ class Player(pg.sprite.Sprite):
                 frame, frame_index = frames[size_list[self.change_index]]
                 self.set_player_image(frame, frame_index)
             self.change_index += 1
-    
+
     def changing_to_fire(self):
         timer_list = [65, 195, 260, 325, 390, 455, 520, 585, 650, 715, 780, 845, 910, 975]
         # size value 0:fire, 1:big green, 2:big red, 3:big black
@@ -471,7 +470,7 @@ class Player(pg.sprite.Sprite):
                 frame, frame_index = frames[size_list[self.change_index]]
                 self.set_player_image(frame, frame_index)
             self.change_index += 1
-        
+
     def set_player_image(self, frames, frame_index):
         self.frame_index = frame_index
         if self.facing_right:
@@ -485,7 +484,7 @@ class Player(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.bottom = bottom
         self.rect.centerx = centerx
-    
+
     def check_if_hurt_invincible(self):
         if self.hurt_invincible:
             if self.hurt_invincible_timer == 0:
@@ -503,7 +502,7 @@ class Player(pg.sprite.Sprite):
                 for frames in self.all_images:
                     for image in frames:
                         image.set_alpha(255)
-    
+
     def check_if_invincible(self):
         if self.invincible:
             if self.invincible_timer == 0:
@@ -533,7 +532,7 @@ class Player(pg.sprite.Sprite):
             self.image = self.right_frames[self.frame_index]
         else:
             self.image = self.left_frames[self.frame_index]
-    
+
     def start_death_jump(self, game_info):
         self.dead = True
         game_info[c.PLAYER_DEAD] = True
