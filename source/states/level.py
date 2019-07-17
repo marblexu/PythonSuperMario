@@ -150,7 +150,7 @@ class Level(tools.State):
 		for data in self.map_data[c.MAP_ENEMY]:
 			group = pg.sprite.Group()
 			for item in data[str(index)]:
-				group.add(enemy.create_enemy(item))
+				group.add(enemy.create_enemy(item, self))
 			self.enemy_group_list.append(group)
 			index += 1
 			
@@ -276,6 +276,8 @@ class Level(tools.State):
 				self.change_map(checkpoint.map_index, checkpoint.type)
 			elif checkpoint.type == c.CHECKPOINT_TYPE_MAP:
 				self.change_map(checkpoint.map_index, checkpoint.type)
+			elif checkpoint.type == c.CHECKPOINT_TYPE_BOSS:
+				self.player.state = c.WALKING_TO_CASTLE
 			checkpoint.kill()
 
 	def update_flag_score(self):
@@ -416,7 +418,10 @@ class Level(tools.State):
 				self.move_to_dying_group(self.enemy_group, enemy)
 				direction = c.RIGHT if self.player.facing_right else c.LEFT
 				enemy.start_death_jump(direction)
-			elif enemy.name == c.PIRANHA or enemy.name == c.FIRESTICK:
+			elif (enemy.name == c.PIRANHA or
+				enemy.name == c.FIRESTICK or
+				enemy.name == c.FIRE_KOOPA or
+				enemy.name == c.FIRE):
 				pass
 			elif self.player.y_vel > 0:
 				enemy.state = c.JUMPED_ON

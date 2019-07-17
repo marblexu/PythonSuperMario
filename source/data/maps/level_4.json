@@ -9,14 +9,14 @@
 		{"x":   0, "y":323, "width": 172, "height": 43},
 		{"x":   0, "y":280, "width": 129, "height": 43},
 		{"x": 623, "y":409, "width": 470, "height":191},
-		{"x":1222, "y":409, "width": 330, "height":191},
-		{"x":1480, "y":409, "width":2959, "height":191},
-		{"x":1480, "y":366, "width":1587, "height": 43},
+		{"x":1222, "y":409, "width": 129, "height":191},
+		{"x":1480, "y":409, "width":2956, "height":191},
+		{"x":1480, "y":366, "width":1584, "height": 43},
 		{"x":4436, "y":537, "width":1031, "height": 60},
-		{"x":4952, "y":406, "width": 172, "height":130},
-		{"x":5252, "y":406, "width": 214, "height":130},
-		{"x":6023, "y":363, "width": 130, "height":170},
-		{"x":6023, "y":537, "width": 821, "height": 60}
+		{"x":4952, "y":409, "width": 170, "height":130},
+		{"x":5252, "y":409, "width": 213, "height":130},
+		{"x":6024, "y":366, "width": 126, "height":170},
+		{"x":6024, "y":537, "width": 820, "height": 60}
 	],
 	"step":[
 		{"x":   0, "y": 63, "width":1008, "height":127},
@@ -34,15 +34,21 @@
 		{"x":3752, "y":104, "width":  41, "height": 86},
 		{"x":3924, "y":366, "width":  41, "height": 43},
 		{"x":3580, "y":366, "width":  41, "height": 43},
-		{"x":4138, "y":104, "width": 299, "height": 86},
-		{"x":5252, "y":104, "width": 414, "height": 86}
+		{"x":4138, "y":104, "width": 297, "height": 86},
+		{"x":5252, "y":104, "width": 213, "height": 86},
+		{"x":6067, "y":104 , "width": 84, "height":128},
+
+		{"x":5468, "y":409 , "width": 540, "height":44}
+	],
+	"slider":[
+		{"x":5750, "y":238, "num":2, "direction":0, "range_start":5720, "range_end":5930}
 	],
 	"box":[
 		{"x":1266, "y":236, "type":3}
 	],
 	"enemy":[
 		{"0":[
-			{"x":1277, "y":424, "direction":0, "type":4, "color":0, "num":6}
+			{"x":1275, "y":422, "direction":0, "type":4, "color":0, "num":6}
 		]},
 		{"1":[
 			{"x":2091, "y":249, "direction":0, "type":4, "color":0, "num":6}
@@ -61,6 +67,9 @@
 		]},
 		{"6":[
 			{"x":3762, "y":163, "direction":0, "type":4, "color":0, "num":6}
+		]},
+		{"7":[
+			{"x":5858, "y":405, "direction":0, "type":5, "color":0, "range":1, "range_start":5750, "range_end":5975}
 		]}
 	],
 	"checkpoint":[
@@ -70,6 +79,9 @@
 		{"x":2162, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":3},
 		{"x":2550, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":4},
 		{"x":2892, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":5},
-		{"x":3062, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":6}
+		{"x":3062, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":6},
+		{"x":4040, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":7},
+		{"x":6026, "y":324, "width":40, "height":40, "type":7, "enemy_groupid":0},
+		{"x":6510, "y":0, "width":10, "height":600, "type":2, "enemy_groupid":0}
 	]
 }

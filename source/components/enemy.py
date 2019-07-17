@@ -6,7 +6,7 @@ from .. import constants as c
 
 ENEMY_SPEED = 1
 
-def create_enemy(item):
+def create_enemy(item, level):
 	dir = c.LEFT if item['direction'] == 0 else c.RIGHT
 	color = item[c.COLOR]
 	if c.ENEMY_RANGE in item:
@@ -30,6 +30,9 @@ def create_enemy(item):
 	elif item['type'] == c.ENEMY_TYPE_PIRANHA:
 		sprite = Piranha(item['x'], item['y'], dir, color,
 			in_range, range_start, range_end)
+	elif item['type'] == c.ENEMY_TYPE_FIRE_KOOPA:
+		sprite = FireKoopa(item['x'], item['y'], dir, color,
+			in_range, range_start, range_end, level)
 	elif item['type'] == c.ENEMY_TYPE_FIRESTICK:
 		'''use a number of fireballs to stimulate a firestick'''
 		sprite = []
@@ -316,6 +319,71 @@ class FlyKoopa(Enemy):
 		self.in_range = False
 		self.isVertical = False
 
+class FireKoopa(Enemy):
+	def __init__(self, x, y, direction, color, in_range,
+				range_start, range_end, level, name=c.FIRE_KOOPA):
+		Enemy.__init__(self)
+		frame_rect_list = [(2, 210, 32, 32), (42, 210, 32, 32),
+							(82, 210, 32, 32), (122, 210, 32, 32)]
+		self.setup_enemy(x, y, direction, name, setup.GFX['smb_enemies_sheet'], 
+					frame_rect_list, in_range, range_start, range_end)
+		# right walk images
+		self.frames.append(pg.transform.flip(self.frames[0], True, False))
+		self.frames.append(pg.transform.flip(self.frames[1], True, False))
+		self.frames.append(pg.transform.flip(self.frames[2], True, False))
+		self.frames.append(pg.transform.flip(self.frames[3], True, False))
+		self.x_vel = 0
+		self.level = level
+		self.fire_timer = 0
+
+	def load_frames(self, sheet, frame_rect_list):
+		for frame_rect in frame_rect_list:
+			self.frames.append(tools.get_image(sheet, *frame_rect,
+							c.BLACK, c.BRICK_SIZE_MULTIPLIER))
+
+	def walking(self):
+		if (self.current_time - self.animate_timer) > 250:
+			if self.direction == c.RIGHT:
+				self.frame_index += 1
+				if self.frame_index > 7:
+					self.frame_index = 4
+			else:
+				self.frame_index += 1
+				if self.frame_index > 3:
+					self.frame_index = 0
+			self.animate_timer = self.current_time
+
+		if self.fire_timer == 0:
+			self.fire_timer = self.current_time
+			self.shootFire()
+		elif (self.current_time - self.fire_timer) > 3000:
+			self.fire_timer = self.current_time
+			self.shootFire()
+
+	def shootFire(self):
+		self.level.enemy_group.add(Fire(self.rect.x, self.rect.bottom-20, self.direction))
+		self.level.player_and_enemy_group.add(self.level.enemy_group)
+
+class Fire(Enemy):
+	def __init__(self, x, y, direction, name=c.FIRE):
+		Enemy.__init__(self)
+		frame_rect_list = [(101, 253, 23, 8), (131, 253, 23, 8)]
+		in_range, range_start, range_end = False, 0, 0
+		self.setup_enemy(x, y, direction, name, setup.GFX['smb_enemies_sheet'], 
+					frame_rect_list, in_range, range_start, range_end)
+		# right images
+		self.frames.append(pg.transform.flip(self.frames[0], True, False))
+		self.frames.append(pg.transform.flip(self.frames[1], True, False))
+		self.state = c.FLY
+		self.x_vel = 5 if self.direction == c.RIGHT else -5
+
+	def check_x_collisions(self, level):
+		sprite_group = pg.sprite.Group(level.ground_step_pipe_group,
+							level.brick_group, level.box_group)
+		sprite = pg.sprite.spritecollideany(self, sprite_group)
+		if sprite:
+			self.kill()
+
 class Piranha(Enemy):
 	def __init__(self, x, y, direction, color, in_range, 
 				range_start, range_end, name=c.PIRANHA):
@@ -395,7 +463,6 @@ class FireStick(pg.sprite.Sprite):
 		self.center_y = center_y
 		self.radius = radius
 		self.angle = 0
-		print('FireStick:', self.rect.x, self.rect.y)
 
 	def load_frames(self, sheet, frame_rect_list):
 		for frame_rect in frame_rect_list:
@@ -404,13 +471,13 @@ class FireStick(pg.sprite.Sprite):
 
 	def update(self, game_info, level):
 		self.current_time = game_info[c.CURRENT_TIME]
-		if (self.current_time - self.animate_timer) > 200:
+		if (self.current_time - self.animate_timer) > 100:
 			if self.frame_index < 3:
 				self.frame_index += 1
 			else:
 				self.frame_index = 0
 			self.animate_timer = self.current_time
-		#self.image = self.frames[self.frame_index]
+		self.image = self.frames[self.frame_index]
 
 		self.angle += 1
 		if self.angle == 360:
