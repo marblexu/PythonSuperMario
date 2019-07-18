@@ -101,8 +101,8 @@ class Info():
         top = []
         top_score = []
 
-        self.create_label(mario_game, 'MARIO GAME', 272, 360)
-        self.create_label(luigi_game, 'LUIGI GAME', 272, 405)
+        self.create_label(mario_game, '1 PLAYER GAME', 272, 360)
+        self.create_label(luigi_game, '2 PLAYER GAME', 272, 405)
         self.create_label(top, 'TOP - ', 290, 465)
         self.create_label(top_score, '000000', 400, 465)
         self.main_menu_labels = [mario_game, luigi_game, top, top_score,

@@ -42,7 +42,7 @@ class Menu(tools.State):
         rect = image.get_rect()
         rect.x, rect.y = (170, 100)
         self.image_dict['GAME_NAME_BOX'] = (image, rect)
-    
+
     def setup_player(self):
         self.player_list = []
         player_rect_info = [(178, 32, 12, 16), (178, 128, 12, 16)]
@@ -53,7 +53,7 @@ class Menu(tools.State):
             rect.x, rect.bottom = 110, c.GROUND_HEIGHT
             self.player_list.append((image, rect))
         self.player_index = 0
-    
+
     def setup_cursor(self):
         self.cursor = pg.sprite.Sprite()
         self.cursor.image = tools.get_image(setup.GFX[c.ITEM_SHEET], 24, 160, 8, 8, c.BLACK, 3)
@@ -61,26 +61,7 @@ class Menu(tools.State):
         rect.x, rect.y = (220, 358)
         self.cursor.rect = rect
         self.cursor.state = c.PLAYER1
-        
-    def get_image(self, x, y, width, height, dest, sprite_sheet):
-        image = pg.Surface([width, height])
-        rect = image.get_rect()
-        image.blit(sprite_sheet, (0,0), (x, y, width, height))
-        
-        if sprite_sheet == setup.GFX['title_screen']:
-            image.set_colorkey((255, 0, 220))
-            image = pg.transform.scale(image,
-                                   (int(rect.width*c.SIZE_MULTIPLIER),
-                                    int(rect.height*c.SIZE_MULTIPLIER)))
-        else:
-            image.set_colorkey(c.BLACK)
-            image = pg.transform.scale(image,
-                                   (int(rect.width*3),
-                                    int(rect.height*3)))
-        rect = image.get_rect()
-        rect.x, rect.y = dest[0], dest[1]
-        return (image, rect)
-    
+
     def update(self, surface, keys, current_time):
         self.current_time = current_time
         self.game_info[c.CURRENT_TIME] = self.current_time
