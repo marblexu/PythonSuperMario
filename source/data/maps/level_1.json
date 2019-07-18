@@ -168,8 +168,8 @@
             {"x":5660, "y":538, "direction":0, "type":0, "color":0}
         ]},
         {"9":[
-            {"x":7460, "y":538, "direction":0, "type":0, "color":0},
-            {"x":7520, "y":538, "direction":0, "type":0, "color":0}
+            {"x":7550, "y":538, "direction":0, "type":0, "color":0},
+            {"x":7610, "y":538, "direction":0, "type":0, "color":0}
         ]}
     ],
     "checkpoint":[
@@ -182,7 +182,7 @@
         {"x":4300, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":6},
         {"x":4700, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":7},
         {"x":5000, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":8},
-        {"x":6800, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":9},
+        {"x":6940, "y":  0, "width":100, "height":600, "type":0, "enemy_groupid":9},
         {"x":2460, "y":439, "width":50, "height": 10, "type":6, "map_index":1},
         {"x":8504, "y":-10, "width": 6, "height":600, "type":1},
         {"x":8780, "y":  0, "width":10, "height":600, "type":2},

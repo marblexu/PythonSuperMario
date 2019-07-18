@@ -266,13 +266,13 @@ class Level(tools.State):
                 self.player.rect.y = mushroom_box.rect.bottom
                 self.player.state = c.FALL
             elif checkpoint.type == c.CHECKPOINT_TYPE_PIPE:
-                self.player.state = c.WALKING_TO_CASTLE
+                self.player.state = c.WALK_NO_COLLISION
             elif checkpoint.type == c.CHECKPOINT_TYPE_PIPE_UP:
                 self.change_map(checkpoint.map_index, checkpoint.type)
             elif checkpoint.type == c.CHECKPOINT_TYPE_MAP:
                 self.change_map(checkpoint.map_index, checkpoint.type)
             elif checkpoint.type == c.CHECKPOINT_TYPE_BOSS:
-                self.player.state = c.WALKING_TO_CASTLE
+                self.player.state = c.WALK_NO_COLLISION
             checkpoint.kill()
 
     def update_flag_score(self):
@@ -486,9 +486,9 @@ class Level(tools.State):
             self.player.y_vel = 0
             self.player.rect.bottom = sprite.rect.top
             if self.player.state == c.FLAGPOLE:
-                self.player.state = c.WALKING_TO_CASTLE
+                self.player.state = c.WALK_NO_COLLISION
             elif self.player.state == c.END_OF_LEVEL_FALL:
-                self.player.state = c.WALKING_TO_CASTLE
+                self.player.state = c.WALK_NO_COLLISION
             else:
                 self.player.state = c.WALK
     
@@ -522,7 +522,7 @@ class Level(tools.State):
                             self.brick_group, self.box_group)
         
         if pg.sprite.spritecollideany(sprite, check_group) is None:
-            if (sprite.state == c.WALKING_TO_CASTLE or 
+            if (sprite.state == c.WALK_NO_COLLISION or
                 sprite.state == c.END_OF_LEVEL_FALL):
                 sprite.state = c.END_OF_LEVEL_FALL
             elif (sprite.state != c.JUMP and 

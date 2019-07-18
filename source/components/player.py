@@ -149,8 +149,8 @@ class Player(pg.sprite.Sprite):
             self.jumping_to_death()
         elif self.state == c.FLAGPOLE:
             self.flag_pole_sliding()
-        elif self.state == c.WALKING_TO_CASTLE:
-            self.walking_to_castle()
+        elif self.state == c.WALK_NO_COLLISION:
+            self.walking_no_collision()
         elif self.state == c.END_OF_LEVEL_FALL:
             self.y_vel += self.gravity
         elif self.state == c.IN_CASTLE:
@@ -385,7 +385,7 @@ class Player(pg.sprite.Sprite):
         elif self.rect.bottom >= 493:
             self.frame_index = 10
 
-    def walking_to_castle(self):
+    def walking_no_collision(self):
         self.max_x_vel = 5
         self.x_accel = self.walk_accel
         
