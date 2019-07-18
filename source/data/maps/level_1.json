@@ -1,18 +1,24 @@
 {
     "image_name":"level_1",
+    "maps":[
+        {"start_x":   0, "end_x": 9086, "player_x": 110, "player_y":538},
+        {"start_x":9090, "end_x": 9890, "player_x":  80, "player_y": 60},
+        {"start_x":6740, "end_x": 9086, "player_x": 270, "player_y":450}
+    ],
     "ground":[
         {"x":   0, "y":538, "width":2953, "height":60},
         {"x":3048, "y":538, "width": 635, "height":60},
         {"x":3819, "y":538, "width":2735, "height":60},
-        {"x":6647, "y":538, "width":2300, "height":60}
+        {"x":6647, "y":538, "width":3250, "height":60}
     ],
     "pipe":[
         {"x":1201, "y":451, "width": 83, "height": 84, "type":0},
         {"x":1629, "y":409, "width": 83, "height":126, "type":0},
         {"x":1972, "y":366, "width": 83, "height":170, "type":0},
         {"x":2444, "y":366, "width": 83, "height":170, "type":1},
-        {"x":6987, "y":451, "width": 83, "height": 84, "type":2},
-        {"x":7673, "y":451, "width": 83, "height": 84, "type":0}
+        {"x":6987, "y":451, "width": 83, "height": 84, "type":0},
+        {"x":7673, "y":451, "width": 83, "height": 84, "type":0},
+        {"x":9728, "y":451, "width":104, "height": 84, "type":2}
     ],
     "step":[
         {"x":5745, "y":495, "width": 40, "height": 44},
@@ -46,7 +52,29 @@
         {"x":8060, "y":194, "width": 40, "height": 44},
         {"x":8103, "y":194, "width": 40, "height":360},
         
-        {"x":8488, "y":495, "width": 40, "height": 44}
+        {"x":8488, "y":495, "width": 40, "height": 44},
+        {"x":9821, "y": 64, "width": 70, "height":530}
+    ],
+    "coin":[
+        {"x":9318, "y":369},
+        {"x":9362, "y":369},
+        {"x":9406, "y":369},
+        {"x":9450, "y":369},
+        {"x":9494, "y":369},
+        {"x":9538, "y":369},
+        {"x":9582, "y":369},
+        {"x":9318, "y":284},
+        {"x":9362, "y":284},
+        {"x":9406, "y":284},
+        {"x":9450, "y":284},
+        {"x":9494, "y":284},
+        {"x":9538, "y":284},
+        {"x":9582, "y":284},
+        {"x":9362, "y":198},
+        {"x":9406, "y":198},
+        {"x":9450, "y":198},
+        {"x":9494, "y":198},
+        {"x":9538, "y":198}
     ],
     "brick":[
         {"x": 858, "y":365, "type":0},
@@ -83,7 +111,13 @@
         {"x":5574, "y":365, "type":0},
         {"x":7202, "y":365, "type":0},
         {"x":7245, "y":365, "type":0},
-        {"x":7331, "y":365, "type":0}
+        {"x":7331, "y":365, "type":0},
+
+        {"x":9090, "y": 64, "type":0, "color":1,"brick_num":11, "direction":1},
+        {"x":9310, "y": 64, "type":0, "color":1,"brick_num":7, "direction":0},
+        {"x":9310, "y":406, "type":0, "color":1,"brick_num":7, "direction":0},
+        {"x":9310, "y":449, "type":0, "color":1,"brick_num":7, "direction":0},
+        {"x":9310, "y":492, "type":0, "color":1,"brick_num":7, "direction":0}
     ],
     "box":[
         {"x": 685, "y":365, "type":1},
@@ -139,19 +173,22 @@
         ]}
     ],
     "checkpoint":[
-        {"x": 510, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":0},
-        {"x":1400, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":1},
-        {"x":1740, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":2},
-        {"x":3050, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":3},
-        {"x":3750, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":4},
-        {"x":4100, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":5},
-        {"x":4300, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":6},
-        {"x":4700, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":7},
-        {"x":5000, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":8},
-        {"x":6800, "y":0, "width":10, "height":600, "type":0, "enemy_groupid":9},
-        {"x":8504, "y":-10, "width": 6, "height":600, "type":1, "enemy_groupid":0},
-        {"x":8780, "y":0, "width":10, "height":600, "type":2, "enemy_groupid":0},
-        {"x":2740, "y":360, "width":40, "height":12, "type":3, "enemy_groupid":0}
+        {"x": 510, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":0},
+        {"x":1400, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":1},
+        {"x":1740, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":2},
+        {"x":3050, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":3},
+        {"x":3750, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":4},
+        {"x":4100, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":5},
+        {"x":4300, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":6},
+        {"x":4700, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":7},
+        {"x":5000, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":8},
+        {"x":6800, "y":  0, "width":10, "height":600, "type":0, "enemy_groupid":9},
+        {"x":2460, "y":439, "width":50, "height": 10, "type":6, "map_index":1},
+        {"x":8504, "y":-10, "width": 6, "height":600, "type":1},
+        {"x":8780, "y":  0, "width":10, "height":600, "type":2},
+        {"x":2740, "y":360, "width":40, "height": 12, "type":3},
+        {"x":9731, "y":458, "width":10, "height": 70, "type":4},
+        {"x":9800, "y":458, "width":10, "height": 70, "type":5, "map_index":2}
     ],
     "flagpole":[
         {"x":8470, "y":116, "type":0},
