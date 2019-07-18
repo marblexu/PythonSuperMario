@@ -425,6 +425,7 @@ class Level(tools.State):
                 enemy.name == c.FIRE):
                 pass
             elif self.player.y_vel > 0:
+                self.update_score(100, enemy, 0)
                 enemy.state = c.JUMPED_ON
                 if enemy.name == c.GOOMBA:
                     self.move_to_dying_group(self.enemy_group, enemy)
