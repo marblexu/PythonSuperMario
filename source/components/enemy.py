@@ -211,7 +211,11 @@ class Enemy(pg.sprite.Sprite):
                 self.frame_index = 0
 
     def check_y_collisions(self, level):
-        sprite_group = pg.sprite.Group(level.ground_step_pipe_group, 
+        # decrease runtime delay: when enemey is on the ground, don't check brick and box
+        if self.rect.bottom >= c.GROUND_HEIGHT:
+            sprite_group = level.ground_step_pipe_group
+        else:
+            sprite_group = pg.sprite.Group(level.ground_step_pipe_group,
                             level.brick_group, level.box_group)
         sprite = pg.sprite.spritecollideany(self, sprite_group)
         if sprite and sprite.name != c.MAP_SLIDER:

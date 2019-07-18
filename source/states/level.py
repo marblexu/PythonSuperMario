@@ -396,12 +396,17 @@ class Level(tools.State):
 
     def check_player_y_collisions(self):
         ground_step_pipe = pg.sprite.spritecollideany(self.player, self.ground_step_pipe_group)
-        brick = pg.sprite.spritecollideany(self.player, self.brick_group)
-        box = pg.sprite.spritecollideany(self.player, self.box_group)
         enemy = pg.sprite.spritecollideany(self.player, self.enemy_group)
         shell = pg.sprite.spritecollideany(self.player, self.shell_group)
-        
-        brick, box = self.prevent_collision_conflict(brick, box)
+
+        # decrease runtime delay: when player is on the ground, don't check brick and box
+        if self.player.rect.bottom < c.GROUND_HEIGHT:
+            brick = pg.sprite.spritecollideany(self.player, self.brick_group)
+            box = pg.sprite.spritecollideany(self.player, self.box_group)
+            brick, box = self.prevent_collision_conflict(brick, box)
+        else:
+            brick, box = False, False
+
         if box:
             self.adjust_player_for_y_collisions(box)
         elif brick:
