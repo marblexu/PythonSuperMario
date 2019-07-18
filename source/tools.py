@@ -18,7 +18,6 @@ class State():
         self.current_time = 0.0
         self.done = False
         self.next = None
-        self.previous = None
         self.persist = {}
     
     @abstractmethod
@@ -34,13 +33,11 @@ class State():
         '''abstract method'''
 
 class Control():
-    def __init__(self, caption):
+    def __init__(self):
         self.screen = pg.display.get_surface()
         self.done = False
         self.clock = pg.time.Clock()
-        self.caption = caption
         self.fps = 60
-        self.show_fps = False
         self.current_time = 0.0
         self.keys = pg.key.get_pressed()
         self.state_dict = {}
@@ -63,7 +60,6 @@ class Control():
         persist = self.state.cleanup()
         self.state = self.state_dict[self.state_name]
         self.state.startup(self.current_time, persist)
-        self.state.previous = previous
 
     def event_loop(self):
         for event in pg.event.get():
