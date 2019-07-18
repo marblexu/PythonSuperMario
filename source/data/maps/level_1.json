@@ -18,7 +18,7 @@
         {"x":2444, "y":366, "width": 83, "height":170, "type":1},
         {"x":6987, "y":451, "width": 83, "height": 84, "type":0},
         {"x":7673, "y":451, "width": 83, "height": 84, "type":0},
-        {"x":9728, "y":451, "width":104, "height": 84, "type":2}
+        {"x":9724, "y":451, "width": 40, "height": 84, "type":2}
     ],
     "step":[
         {"x":5745, "y":495, "width": 40, "height": 44},

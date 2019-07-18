@@ -132,7 +132,7 @@ class Score():
 class Pipe(Stuff):
     def __init__(self, x, y, width, height, type, name=c.MAP_PIPE):
         if type == c.PIPE_TYPE_HORIZONTAL:
-            rect = [(32, 128, 45, 30)]
+            rect = [(32, 128, 37, 30)]
         else:
             rect = [(0, 160, 32, 30)]
         Stuff.__init__(self, x, y, setup.GFX['tile_set'],
