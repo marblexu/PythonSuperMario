@@ -17,3 +17,9 @@ $ python main.py
 * use LEFT/RIGHT/DOWN key to control player
 * use key 'a' to jump
 * use key 's' to shoot firewall or run
+
+# Demo
+![level_1_1](https://raw.githubusercontent.com/marblexu/PythonSuperMario/master/resources/demo/level_1_1.png)
+![level_1_2](https://raw.githubusercontent.com/marblexu/PythonSuperMario/master/resources/demo/level_1_2.png)
+![level_1_3](https://raw.githubusercontent.com/marblexu/PythonSuperMario/master/resources/demo/level_1_3.png)
+![level_1_4](https://raw.githubusercontent.com/marblexu/PythonSuperMario/master/resources/demo/level_1_4.png)
