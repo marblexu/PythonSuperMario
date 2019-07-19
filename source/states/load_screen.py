@@ -56,7 +56,7 @@ class TimeOut(LoadScreen):
         if self.persist[c.LIVES] == 0:
             return c.GAME_OVER
         else:
-            return c.LEVEL
+            return c.LOAD_SCREEN
 
     def set_info_state(self):
         return c.TIME_OUT

@@ -14,21 +14,15 @@ class Character(pg.sprite.Sprite):
 class Info():
     def __init__(self, game_info, state):
         self.coin_total = game_info[c.COIN_TOTAL]
-        self.time = 301
+        self.time = c.GAME_TIME_OUT
         self.current_time = 0
         self.total_lives = game_info[c.LIVES]
         self.state = state
         self.game_info = game_info
         
         self.create_font_image_dict()
-        self.create_text()
         self.create_info_labels()
-        self.create_player_image()
-        self.create_main_menu_labels()
-        self.create_load_screen_labels()
-        self.create_level_labels()
-        self.create_game_over_labels()
-        self.create_time_out_labels()
+        self.create_state_labels()
         self.flashing_coin = coin.FlashCoin(280, 53)
         
     def create_font_image_dict(self):
@@ -58,28 +52,38 @@ class Info():
         for character, image_rect in zip(character_string, image_rect_list):
             self.image_dict[character] = tools.get_image(setup.GFX['text_images'], 
                                             *image_rect, (92, 148, 252), 2.9)
-    
-    def create_text(self):
-        self.score_text = []
-        self.create_label(self.score_text, '000000', 75, 55)
-        
-        self.coin_count_text = []
-        self.create_label(self.coin_count_text, '*00', 300, 55)
-    
+
     def create_info_labels(self):
+        self.score_text = []
+        self.coin_count_text = []
         self.mario_label = []
         self.world_label = []
         self.time_label = []
         self.stage_label = []
-        
+
+        self.create_label(self.score_text, '000000', 75, 55)
+        self.create_label(self.coin_count_text, '*00', 300, 55)
         self.create_label(self.mario_label, 'MARIO', 75, 30)
         self.create_label(self.world_label, 'WORLD', 450, 30)
         self.create_label(self.time_label, 'TIME', 625, 30)
         self.create_label(self.stage_label, '1-1', 472, 55)
-        
-        self.label_list = [self.mario_label, self.world_label, 
-                           self.time_label, self.stage_label]
-    
+
+        self.info_labels = [self.score_text, self.coin_count_text, self.mario_label,
+                    self.world_label, self.time_label, self.stage_label]
+
+    def create_state_labels(self):
+        if self.state == c.MAIN_MENU:
+            self.create_main_menu_labels()
+        elif self.state == c.LOAD_SCREEN:
+            self.create_player_image()
+            self.create_load_screen_labels()
+        elif self.state == c.LEVEL:
+            self.create_level_labels()
+        elif self.state == c.GAME_OVER:
+            self.create_game_over_labels()
+        elif self.state == c.TIME_OUT:
+            self.create_time_out_labels()
+
     def create_player_image(self):
         self.life_times_image = tools.get_image(setup.GFX['text_images'], 
                                 75, 247, 6, 6, (92, 148, 252), 2.9)
@@ -101,12 +105,12 @@ class Info():
         top = []
         top_score = []
 
-        self.create_label(mario_game, '1 PLAYER GAME', 272, 360)
-        self.create_label(luigi_game, '2 PLAYER GAME', 272, 405)
+        self.create_label(mario_game, c.PLAYER1, 272, 360)
+        self.create_label(luigi_game, c.PLAYER2, 272, 405)
         self.create_label(top, 'TOP - ', 290, 465)
         self.create_label(top_score, '000000', 400, 465)
-        self.main_menu_labels = [mario_game, luigi_game, top, top_score,
-                self.score_text, *self.label_list, self.coin_count_text]
+        self.state_labels = [mario_game, luigi_game, top, top_score,
+                            *self.info_labels]
     
     def create_load_screen_labels(self):
         world_label = []
@@ -114,15 +118,13 @@ class Info():
 
         self.create_label(world_label, 'WORLD', 280, 200)
         self.create_label(self.stage_label2, '1-1', 430, 200)
-        
-        self.load_screen_labels = [world_label, self.stage_label2, self.score_text, 
-                *self.label_list, self.life_total_label, self.coin_count_text]
+        self.state_labels = [world_label, self.stage_label2,
+                *self.info_labels, self.life_total_label]
 
     def create_level_labels(self):
         self.clock_time_label = []
         self.create_label(self.clock_time_label, str(self.time), 645, 55)
-        self.level_labels = [self.score_text, *self.label_list,
-                    self.coin_count_text, self.clock_time_label]
+        self.state_labels = [*self.info_labels, self.clock_time_label]
 
     def create_game_over_labels(self):
         game_label = []
@@ -131,14 +133,12 @@ class Info():
         self.create_label(game_label, 'GAME', 280, 300)
         self.create_label(over_label, 'OVER', 400, 300)
         
-        self.game_over_label = [game_label, over_label, self.score_text, 
-                        *self.label_list, self.coin_count_text]
+        self.state_labels = [game_label, over_label, *self.info_labels]
 
     def create_time_out_labels(self):
         timeout_label = []
         self.create_label(timeout_label, 'TIME OUT', 290, 310)
-        self.time_out_label = [timeout_label, self.score_text,
-                        *self.label_list, self.coin_count_text]
+        self.state_labels = [timeout_label, *self.info_labels]
 
     def create_label(self, label_list, string, x, y):
         for letter in string:
@@ -162,8 +162,9 @@ class Info():
         self.update_text(self.score_text, self.score)
         self.update_text(self.coin_count_text, level_info[c.COIN_TOTAL])
         self.update_text(self.stage_label, level_info[c.LEVEL_NUM])
-        self.update_text(self.stage_label2, level_info[c.LEVEL_NUM])
         self.flashing_coin.update(level_info[c.CURRENT_TIME])
+        if self.state == c.LOAD_SCREEN:
+            self.update_text(self.stage_label2, level_info[c.LEVEL_NUM])
         if self.state == c.LEVEL:
             if (level_info[c.CURRENT_TIME] - self.current_time) > 1000:
                 self.current_time = level_info[c.CURRENT_TIME]
@@ -181,18 +182,10 @@ class Info():
             index -= 1
         
     def draw(self, surface):
-        if self.state == c.MAIN_MENU:
-            self.draw_info(surface, self.main_menu_labels)
-        elif self.state == c.LOAD_SCREEN:
-            self.draw_info(surface, self.load_screen_labels)
+        self.draw_info(surface, self.state_labels)
+        if self.state == c.LOAD_SCREEN:
             surface.blit(self.player_image, self.player_rect)
             surface.blit(self.life_times_image, self.life_times_rect)
-        elif self.state == c.LEVEL:
-            self.draw_info(surface, self.level_labels)
-        elif self.state == c.GAME_OVER:
-            self.draw_info(surface, self.game_over_label)
-        elif self.state == c.TIME_OUT:
-            self.draw_info(surface, self.time_out_label)
         surface.blit(self.flashing_coin.image, self.flashing_coin.rect)
     
     def draw_info(self, surface, label_list):
