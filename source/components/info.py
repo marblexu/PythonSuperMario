@@ -14,8 +14,6 @@ class Character(pg.sprite.Sprite):
 class Info():
     def __init__(self, game_info, state):
         self.coin_total = game_info[c.COIN_TOTAL]
-        self.time = c.GAME_TIME_OUT
-        self.current_time = 0
         self.total_lives = game_info[c.LIVES]
         self.state = state
         self.game_info = game_info
@@ -122,6 +120,9 @@ class Info():
                 *self.info_labels, self.life_total_label]
 
     def create_level_labels(self):
+        self.time = c.GAME_TIME_OUT
+        self.current_time = 0
+
         self.clock_time_label = []
         self.create_label(self.clock_time_label, str(self.time), 645, 55)
         self.state_labels = [*self.info_labels, self.clock_time_label]
