@@ -124,6 +124,7 @@ class Star(Powerup):
                     frame_rect_list, c.SIZE_MULTIPLIER)
         self.type = c.TYPE_STAR
         self.gravity = .4
+        self.speed = 5
         
     def update(self, game_info, level):
         self.current_time = game_info[c.CURRENT_TIME]
@@ -135,7 +136,7 @@ class Star(Powerup):
                 self.state = c.BOUNCING
         elif self.state == c.BOUNCING:
             self.y_vel += self.gravity
-            self.x_vel = 5 if self.direction == c.RIGHT else -5
+            self.x_vel = self.speed if self.direction == c.RIGHT else -1 * self.speed
         
         if (self.current_time - self.animate_timer) > 30:
             if self.frame_index < 3:
