@@ -8,7 +8,7 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 800
 SCREEN_SIZE = (SCREEN_WIDTH,SCREEN_HEIGHT)
 
-ORIGINAL_CAPTION = "Super Mario Bros"
+ORIGINAL_CAPTION = "Super Charles"
 
 ## COLORS ##
 #                R    G    B
