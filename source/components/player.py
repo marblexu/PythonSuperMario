@@ -34,9 +34,9 @@ class Player(pg.sprite.Sprite):
             self.dead = False
             self.big = False
             self.fire = False
-            self.set_player_image(self.small_normal_frames, 0)
-            self.right_frames = self.small_normal_frames[0]
-            self.left_frames = self.small_normal_frames[1]
+            self.set_player_image(self.big_normal_frames, 0)
+            self.right_frames = self.big_normal_frames[0]
+            self.left_frames = self.big_normal_frames[1]
         self.state = c.STAND
 
     def load_data(self):
@@ -57,7 +57,7 @@ class Player(pg.sprite.Sprite):
     def setup_state(self):
         self.facing_right = True
         self.allow_jump = True
-        self.allow_fireball = True
+        self.allow_fireball = False
         self.dead = False
         self.big = False
         self.fire = False
@@ -100,6 +100,7 @@ class Player(pg.sprite.Sprite):
                 image = tools.get_image(sheet, frame['x'], frame['y'], 
                                     frame['width'], frame['height'],
                                     c.BLACK, c.SIZE_MULTIPLIER)
+                # Set flipped image
                 left_image = pg.transform.flip(image, True, False)
 
                 if name == c.RIGHT_SMALL_NORMAL:
@@ -126,8 +127,8 @@ class Player(pg.sprite.Sprite):
                            self.right_big_fire_frames,
                            self.left_big_fire_frames]
         
-        self.right_frames = self.small_normal_frames[0]
-        self.left_frames = self.small_normal_frames[1]
+        self.right_frames = self.big_normal_frames[0]
+        self.left_frames = self.big_normal_frames[1]
 
     def update(self, keys, game_info, fire_group):
         self.current_time = game_info[c.CURRENT_TIME]

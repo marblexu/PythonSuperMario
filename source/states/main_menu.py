@@ -45,7 +45,8 @@ class Menu(tools.State):
 
     def setup_player(self):
         self.player_list = []
-        player_rect_info = [(178, 32, 12, 16), (178, 128, 12, 16)]
+        # set up the character in the main page.
+        player_rect_info = [(178, 128, 12, 16), (178, 128+36, 12, 16)]
         for rect in player_rect_info:
             image = tools.get_image(setup.GFX['mario_bros'],
                                 *rect, c.BLACK, 2.9)

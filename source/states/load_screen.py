@@ -24,13 +24,14 @@ class LoadScreen(tools.State):
     def set_info_state(self):
         return c.LOAD_SCREEN
 
+    # what to do when a character died.
     def update(self, surface, keys, current_time):
         if (current_time - self.start_time) < self.time_list[0]:
-            surface.fill(c.BLACK)
+            surface.fill(c.GOLD)
             self.overhead_info.update(self.game_info)
             self.overhead_info.draw(surface)
         elif (current_time - self.start_time) < self.time_list[1]:
-            surface.fill(c.BLACK)
+            surface.fill(c.GOLD)
         elif (current_time - self.start_time) < self.time_list[2]:
             surface.fill((106, 150, 252))
         else:
