@@ -61,8 +61,8 @@ class Player(pg.sprite.Sprite):
         self.dead = False
         self.big = False
         self.fire = False
-        self.hurt_invincible = False
-        self.invincible = False
+        self.hurt_invincible = True
+        self.invincible = True
         self.crouching = False
 
     def setup_speed(self):
@@ -498,14 +498,16 @@ class Player(pg.sprite.Sprite):
                 if (self.current_time - self.hurt_invincible_timer2) < 35:
                     self.image.set_alpha(0)
                 elif (self.current_time - self.hurt_invincible_timer2) < 70:
+                    print("11111")
                     self.image.set_alpha(255)
                     self.hurt_invincible_timer2 = self.current_time
             else:
-                self.hurt_invincible = False
-                self.hurt_invincible_timer = 0
-                for frames in self.all_images:
-                    for image in frames:
-                        image.set_alpha(255)
+                pass
+                # self.hurt_invincible = False
+                # self.hurt_invincible_timer = 0
+                # for frames in self.all_images:
+                #     for image in frames:
+                #         image.set_alpha(255)
 
     def check_if_invincible(self):
         if self.invincible:
@@ -524,12 +526,14 @@ class Player(pg.sprite.Sprite):
                 elif (self.current_time - self.invincible_timer2) < 200:
                     self.image.set_alpha(255)
                     self.invincible_timer2 = self.current_time
+            # if the invincible time is more than 120000 ms, then turns to be transparent
             else:
-                self.invincible = False
-                self.invincible_timer = 0
-                for frames in self.all_images:
-                    for image in frames:
-                        image.set_alpha(255)
+                pass
+                # self.invincible = False
+                # self.invincible_timer = 0
+                # for frames in self.all_images:
+                #     for image in frames:
+                #         image.set_alpha(255)
 
     def animation(self):
         if self.facing_right:
